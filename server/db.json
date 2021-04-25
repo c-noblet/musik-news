@@ -48,6 +48,13 @@
       "email": "admin2@gmail.com",
       "password": "$2a$10$v4vUb8M0Igq4Xm/aX.RALOAv.BN0v3NIfp.SiDngdyLqIEnWC8AYK",
       "id": 8
+    },
+    {
+      "email": "valentin.gimonnet18@gmail.com",
+      "password": "$2a$10$1OVuEB8JljPVEkL.xtwaluejiwa6izZVj2HNW2h/.2gS/TbJ91RbO",
+      "username": "vgimonnet",
+      "role": "admin",
+      "id": 9
     }
   ],
   "news": [
@@ -95,8 +102,8 @@
     {
       "id": 1,
       "name": "Coldplay",
-      "origin": "Great Britain",
-      "avatar": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Coldplay_2017%2C_cropped_01.jpg/1024px-Coldplay_2017%2C_cropped_01.jpg",
+      "country": "Great Britain",
+      "avatar": "https://commons.wikimedia.org/wiki/Category:Coldplay#/media/File:Coldplay_2017,_cropped_01.jpg",
       "genreId": 1,
       "likes": 100310,
       "description": "Il est formé par l'auteur-compositeur-interprète Chris Martin et le guitariste Jon Buckland. Le bassiste Guy Berryman rejoint ensuite le groupe, avant que le batteur Will Champion ne vienne compléter le quatuor."

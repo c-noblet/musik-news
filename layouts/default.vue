@@ -1,7 +1,7 @@
 <template>
   <div>
     <nav>
-      <ul>
+      <ul class="flex flex-row">
         <li>
           <NuxtLink to="/">Home</NuxtLink>
         </li>
@@ -11,6 +11,10 @@
         <li>
           <NuxtLink to="/artists">Artists</NuxtLink>
         </li>
+        <li>
+          <button v-if="isAuth" @click="logout">Logout</button>
+          <NuxtLink v-else to="/login">Login</NuxtLink>
+        </li>
       </ul>
     </nav>
     <main>
@@ -18,6 +22,47 @@
     </main>
   </div>
 </template>
+
+<script>
+export default {
+  name: 'RootComponent',
+  data () {
+    return {
+      isAuth: null,
+      role: null,
+      user: null
+    }
+  },
+  methods: {
+    logout (e) {
+      this.$store.dispatch('auth/logout')
+        .then(() => {
+          this.$router.push('/login')
+          // TODO : add success flash message
+        })
+    }
+  },
+  created () {
+    this.isAuth = this.$store.getters['auth/getIsAuth']
+    this.role = this.$store.getters['auth/getRole']
+    this.user = this.$store.getters['auth/getUser']
+
+    this.unsubscribe = this.$store.subscribe((mutations) => {
+      console.log(mutations.payload)
+      if (mutations.type === 'auth/ISAUTH') {
+        this.isAuth = mutations.payload
+      } else if (mutations.type === 'auth/ROLE') {
+        this.role = mutations.payload
+      } else if (mutations.type === 'auth/USER') {
+        this.user = mutations.payload
+      }
+    })
+  },
+  beforeDestroy () {
+    this.unsubscribe()
+  }
+}
+</script>
 
 <style>
 html {

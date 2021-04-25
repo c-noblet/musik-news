@@ -20,3 +20,9 @@ body {
   background-color: #fff;
   color: #000;  
 }
+
+/* Form */
+input, textarea, select {
+  border: 1px solid black;
+  border-radius: 0.1rem;
+}
