@@ -95,8 +95,8 @@
     {
       "id": 1,
       "name": "Coldplay",
-      "country": "Great Britain",
-      "avatar": "https://upload.wikimedia.org/wikipedia/en/1/1d/Coldplay_shot_by_Marcus_Haney_01.png",
+      "origin": "Great Britain",
+      "avatar": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Coldplay_2017%2C_cropped_01.jpg/1024px-Coldplay_2017%2C_cropped_01.jpg",
       "genreId": 1,
       "likes": 100310,
       "description": "Il est formé par l'auteur-compositeur-interprète Chris Martin et le guitariste Jon Buckland. Le bassiste Guy Berryman rejoint ensuite le groupe, avant que le batteur Will Champion ne vienne compléter le quatuor."

@@ -1,6 +1,21 @@
 <template>
   <div>
-    <Nuxt />
+    <nav>
+      <ul>
+        <li>
+          <NuxtLink to="/">Home</NuxtLink>
+        </li>
+        <li>
+          <NuxtLink to="/news">News</NuxtLink>
+        </li>
+        <li>
+          <NuxtLink to="/artists">Artists</NuxtLink>
+        </li>
+      </ul>
+    </nav>
+    <main>
+      <Nuxt />
+    </main>
   </div>
 </template>
 
