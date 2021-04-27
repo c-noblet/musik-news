@@ -18,6 +18,7 @@
       </ul>
     </nav>
     <main>
+      <flash-message></flash-message>
       <Nuxt />
     </main>
   </div>
@@ -37,8 +38,8 @@ export default {
     logout (e) {
       this.$store.dispatch('auth/logout')
         .then(() => {
+          this.flash('Déconnexion réussie !', 'success', { timeout: 5000 })
           this.$router.push('/login')
-          // TODO : add success flash message
         })
     }
   },
