@@ -17,6 +17,11 @@
             Artists
           </NuxtLink>
         </li>
+        <li v-if="role == 'admin'">
+          <NuxtLink to="/admin">
+            Administration
+          </NuxtLink>
+        </li>
         <li>
           <button v-if="isAuth" @click="logout">
             Logout
@@ -60,6 +65,9 @@ export default {
       }
     })
   },
+  mounted () {
+    this.fetchUserInfo()
+  },
   beforeDestroy () {
     this.unsubscribe()
   },
@@ -70,6 +78,9 @@ export default {
           this.flash('Déconnexion réussie !', 'success', { timeout: 5000 })
           this.$router.push('/login')
         })
+    },
+    fetchUserInfo () {
+      this.$store.dispatch('auth/getUserInfo')
     }
   }
 }

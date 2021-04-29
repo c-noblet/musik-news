@@ -101,5 +101,23 @@ export const actions = {
 
     localStorage.removeItem('musik_news_token')
     localStorage.removeItem('musik_news_user_id')
+  },
+  async getUserInfo (context) {
+    if (localStorage.getItem('musik_news_user_id') && localStorage.getItem('musik_news_token')) {
+      await axios.get(`http://localhost:3000/users/${localStorage.getItem('musik_news_user_id')}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('musik_news_token')}`
+        }
+      })
+        .then(async (response) => {
+          await context.commit('ISAUTH', true)
+          await context.commit('USER', response.data)
+          await context.commit('ROLE', response.data.role)
+        })
+    } else {
+      await context.commit('ISAUTH', false)
+      await context.commit('USER', false)
+      await context.commit('ROLE', false)
+    }
   }
 }
