@@ -102,7 +102,7 @@
     {
       "id": 1,
       "name": "Coldplay",
-      "country": "Great Britain",
+      "origin": "Great Britain",
       "avatar": "https://commons.wikimedia.org/wiki/Category:Coldplay#/media/File:Coldplay_2017,_cropped_01.jpg",
       "genreId": 1,
       "likes": 100310,
