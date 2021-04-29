@@ -13,7 +13,9 @@
         <td>{{ artist.origin }}</td>
         <td>
           <button>Modifier</button>
-          <button @click="deleteArtist(artist)">Supprimer</button>
+          <button @click="deleteArtist(artist)">
+            Supprimer
+          </button>
         </td>
       </tr>
     </tbody>
@@ -21,11 +23,6 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import VModal from 'vue-js-modal'
-
-Vue.use(VModal)
-
 export default {
   name: 'ArtistTable',
   props: ['role'],
