@@ -27,8 +27,6 @@
 </template>
 
 <script>
-import axios from 'axios'
-
 export default {
   data () {
     return {
@@ -53,7 +51,7 @@ export default {
   },
   methods: {
     fetchArtist () {
-      axios.get(`http://localhost:3000/artists/${this.idArtist}`)
+      this.$axios.get(`/artists/${this.idArtist}`)
         .then((response) => {
           this.artist = response.data
           this.fetchGenre(this.artist.genreId)
@@ -62,19 +60,19 @@ export default {
         })
     },
     fetchGenre (id) {
-      axios.get(`http://localhost:3000/genres/${id}`)
+      this.$axios.get(`/genres/${id}`)
         .then((response) => {
           this.genre = response.data
         })
     },
     fetchAlbums (idArtist) {
-      axios.get(`http://localhost:3000/albums?artistId=${idArtist}`)
+      this.$axios.get(`/albums?artistId=${idArtist}`)
         .then((response) => {
           this.albums = response.data
         })
     },
     fetchConcerts (idArtist) {
-      axios.get(`http://localhost:3000/concerts?artistId=${idArtist}`)
+      this.$axios.get(`/concerts?artistId=${idArtist}`)
         .then((response) => {
           this.concerts = response.data
         })
