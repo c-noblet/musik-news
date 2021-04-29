@@ -1,33 +1,36 @@
 <template>
-  <div>
+  <div class="container mx-auto">
     <h1>News</h1>
     <ul>
       <li v-for="newData in news" :key="newData.id" :new="newData">
-        {{ newData.title }}
+        <Article :data="newData" />
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
-
+import Article from '@/components/Articles/Article'
 export default {
+  name: 'News',
+  components: {
+    Article
+  },
   data () {
     return {
       news: []
     }
   },
+  mounted () {
+    this.fetchNews()
+  },
   methods: {
     fetchNews () {
-      axios.get('http://localhost:3000/news')
+      this.$axios.get('/news')
         .then((response) => {
           this.news = response.data
         })
     }
-  },
-  mounted () {
-    this.fetchNews()
   }
 }
 </script>
