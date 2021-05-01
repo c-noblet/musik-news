@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>Gestion des artistes/groupes</h1>
+    <NuxtLink to="/admin/form-artist">Ajouter</NuxtLink>
     <table-artist :artists="artists"/>
   </div>
 </template>
@@ -15,7 +16,15 @@ export default {
   },
   data () {
     return {
-      artists: []
+      artists: [],
+      artist: {
+        name: null,
+        avatar: null,
+        origin: null,
+        description: null,
+        genreId: null
+      },
+      idArtist: null
     }
   },
   created () {

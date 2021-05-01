@@ -12,8 +12,8 @@
         <td>{{ artist.name }}</td>
         <td>{{ artist.origin }}</td>
         <td>
-          <button>Modifier</button>
-          <button @click="deleteArtist(artist)">Supprimer</button>
+          <NuxtLink :to="{name: 'admin-form-artist', params: {artistId: artist.id}}">Modifier</NuxtLink>
+          <button @click="deleteArtist(artist.id)">Supprimer</button>
         </td>
       </tr>
     </tbody>
@@ -21,11 +21,6 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import VModal from 'vue-js-modal'
-
-Vue.use(VModal)
-
 export default {
   name: 'ArtistTable',
   props: ['role'],
@@ -48,8 +43,9 @@ export default {
     fetchArtists () {
       this.$store.dispatch('artist/getArtists')
     },
-    deleteArtist (artist) {
-      console.log('deleteArtist')
+    deleteArtist (id) {
+      console.log('deleteArtist', id)
+      this.$store.dispatch('artist/deleteArtist', id)
     }
   }
 }
