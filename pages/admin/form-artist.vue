@@ -56,14 +56,13 @@
       <div class="inline-block relative w-64">
         <select
           class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
-          required
-          v-model="artist.genre"
+          v-model="artist.genreId"
         >
           <option
             v-for="genre in genres"
             :key="genre.id"
-            :genre="genre"
-            :selected="genre.id == artist.genre"
+            :value="genre.id"
+            :selected="artist.genreId === genre.id"
           >
             {{ genre.name }}
           </option>
@@ -73,7 +72,7 @@
         </div>
       </div>
       <div class="flex items-center justify-between">
-        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
           {{ artist.id ? 'Modifier' : 'Ajouter' }}
         </button>
       </div>
@@ -115,7 +114,7 @@ export default {
   methods: {
     submitForm (event) {
       event.preventDefault()
-      if (this.artist.id !== null && this.artist.id.length !== 0 && typeof this.artist.id !== 'undefined') {
+      if (this.artist.id) {
         // TODO : update existing artist
         this.$store.dispatch('artist/updateArtist', this.artist)
         this.redirect()
@@ -129,12 +128,11 @@ export default {
       this.$store.dispatch('artist/getOneArtist', id)
     },
     fetchGenres () {
-      console.log('fetchGenres')
-      // TODO : this.$store.dispatch('genre/getGenres')
+      this.$store.dispatch('genre/getGenres')
     },
     redirect () {
-      this.artist.id ? this.flash('Artiste/Groupe modifié avec succès !', 'succes') : this.flash('Artiste/Groupe modifié avec succès !', 'succes')
-      this.$router.push('admin/artists')
+      this.artist.id ? this.flash('Artiste/Groupe modifié avec succès !', 'succes', { timeout: 5000 }) : this.flash('Artiste/Groupe modifié avec succès !', 'succes', { timeout: 5000 })
+      this.$router.push('/admin/artists')
     }
   },
   beforeDestroy () {

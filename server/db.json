@@ -125,6 +125,14 @@
       "genreId": 3,
       "likes": 20420,
       "description": "Damso, de son vrai nom William Kalubi Mwamba, né le 10 mai 1992 à Kinshasa (Zaïre, actuelle République démocratique du Congo), est un rappeur et auteur-compositeur-interprète belgo-congolais."
+    },
+    {
+      "name": "Slipknot",
+      "description": "Slipknot est un groupe de nu metal7 américain, originaire de Des Moines, dans l'Iowa.",
+      "origin": "USA",
+      "avatar": "https://www.metalzone.fr/wp-content/uploads/2019/09/slipknot-2019.jpg",
+      "genreId": 2,
+      "id": 4
     }
   ],
   "albums": [

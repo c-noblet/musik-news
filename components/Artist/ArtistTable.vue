@@ -44,8 +44,11 @@ export default {
       this.$store.dispatch('artist/getArtists')
     },
     deleteArtist (id) {
-      console.log('deleteArtist', id)
       this.$store.dispatch('artist/deleteArtist', id)
+        .then(() => {
+          this.flash('Artiste/Groupe supprimé avec succès !', 'success', { timeout: 5000 })
+          this.fetchArtists()
+        })
     }
   }
 }
