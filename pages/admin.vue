@@ -16,6 +16,9 @@
           <li>
             <NuxtLink to="/admin/albums">Albums</NuxtLink>
           </li>
+          <li>
+            <NuxtLink to="/admin/genres">Genres</NuxtLink>
+          </li>
         </ul>
       </nav>
     </aside>

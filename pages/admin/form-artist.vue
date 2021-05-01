@@ -131,7 +131,7 @@ export default {
       this.$store.dispatch('genre/getGenres')
     },
     redirect () {
-      this.artist.id ? this.flash('Artiste/Groupe modifié avec succès !', 'succes', { timeout: 5000 }) : this.flash('Artiste/Groupe modifié avec succès !', 'succes', { timeout: 5000 })
+      this.artist.id ? this.flash('Artiste/Groupe modifié avec succès !', 'succes', { timeout: 5000 }) : this.flash('Artiste/Groupe ajouté avec succès !', 'succes', { timeout: 5000 })
       this.$router.push('/admin/artists')
     }
   },
