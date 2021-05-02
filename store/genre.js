@@ -5,7 +5,8 @@ export const state = () => {
     genre: {
       name: null
     },
-    genres: []
+    genres: [],
+    nbGenres: 0
   }
 }
 
@@ -15,6 +16,9 @@ export const getters = {
   },
   genres (state) {
     return state.genres
+  },
+  nbGenres (state) {
+    return state.nbGenres
   }
 }
 
@@ -24,15 +28,20 @@ export const mutations = {
   },
   GENRES (state, payload) {
     state.genres = payload.data
+  },
+  NBGENRES (state, payload) {
+    state.nbGenres = payload.data
   }
 }
 
 export const actions = {
-  getGenres (context) {
-    axios.get('http://localhost:3000/genres')
+  getGenres (context, data) {
+    console.log('getGenres', data)
+    axios.get(`http://localhost:3000/genres?_page=${data.page}&_limit=${data.limit}`)
       .then(async (response) => {
         console.log(response)
         await context.commit('GENRES', response.data)
+        await context.commit('NBGENRES', response.headers['x-total-count'])
       })
   },
   getOneGenre (context, id) {

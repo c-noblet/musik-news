@@ -11,3 +11,20 @@
   background-color: #fff;
   color: #000;
 }
+
+.btn-pagination {
+  padding: 0.2rem 0.8rem;
+  border-radius: 2rem;
+  background-color: none;
+  color: blue;
+  &.active {
+    background-color: blue;
+    color: white
+  }
+  &:hover {
+    text-decoration: underline;
+  }
+  &:focus {
+    outline: none;
+  }
+}
