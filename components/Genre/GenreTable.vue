@@ -34,7 +34,7 @@ export default {
     return {
       genres: [],
       nbGenres: null,
-      limit: 2,
+      limit: 5,
       currentPage: 1
     }
   },

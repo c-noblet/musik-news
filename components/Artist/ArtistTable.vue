@@ -41,7 +41,7 @@ export default {
   },
   methods: {
     fetchArtists () {
-      this.$store.dispatch('artist/getArtists')
+      this.$store.dispatch('artist/getAllArtists')
     },
     deleteArtist (id) {
       this.$store.dispatch('artist/deleteArtist', id)

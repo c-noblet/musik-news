@@ -19,6 +19,8 @@ export default {
     nbElement () {
       if (this.nbElement > this.limit) {
         this.nbPages = Math.ceil(this.nbElement / this.limit)
+      } else {
+        this.nbPages = 1
       }
     }
   }
