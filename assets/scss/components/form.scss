@@ -1,5 +1,12 @@
 /* Form */
 input, textarea, select {
-  border: 1px solid black;
+  border: 1px solid $grey;
   border-radius: 0.1rem;
+  color: $black;
+}
+
+label {
+  color: $white;
+  font: bold normal normal 1rem/1.2rem $font-ubuntu;
+  letter-spacing: 0;  
 }

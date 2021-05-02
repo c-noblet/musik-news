@@ -1,30 +1,64 @@
 /* Button */
-.btn {
-  padding: 0.4rem 1.4rem;
-  border-radius: 2rem;
-  background-color: #000;
-  color: #fff;
-  font-weight: bold;
+a, button {
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
 }
 
-.btn:hover {
-  background-color: #fff;
-  color: #000;
+.btn {
+  padding: 0.4rem 1.2rem;
+  border-radius: 0.4rem;
+  background-color: $black;
+  border: 0.2rem solid $black;
+  color: #fff;
+  font-weight: bold;
+  &:hover {
+    background-color: #fff;
+    color: $black;
+  }
+  &.btn-primary {
+    background-color: $primary;
+    border-color: $primary;
+    color: $white;
+    &:hover {
+      color: $primary;
+      background-color: $white;
+    }
+  }
 }
 
 .btn-pagination {
-  padding: 0.2rem 0.8rem;
-  border-radius: 2rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 0.4rem;
   background-color: none;
-  color: blue;
+  color: $white;
+  span {
+    border-bottom: 1px solid transparent;
+  }
   &.active {
-    background-color: blue;
-    color: white
+    background-color: $primary;
+    color: $white;
+    &:hover{
+      span {
+        border-color: $white;
+      }
+      color: $white;
+    }
   }
   &:hover {
-    text-decoration: underline;
+    span {
+      border-color: $primary;
+    }
+    color: $primary;
   }
   &:focus {
     outline: none;
   }
+}
+
+.nuxt-link-exact-active {
+  color: $light;
+  font-weight: bold;
 }

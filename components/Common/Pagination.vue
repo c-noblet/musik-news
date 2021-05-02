@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="mt-10">
     <button v-for="numPage in nbPages" :key="numPage" :class="numPage == currentPage ? 'btn-pagination active' : 'btn-pagination'" @click="$emit('changePage', numPage)">
-      {{ numPage }}
+      <span>{{ numPage }}</span>
     </button>
   </div>
 </template>
