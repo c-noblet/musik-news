@@ -35,6 +35,12 @@ export const mutations = {
 }
 
 export const actions = {
+  getAllGenres (context) {
+    axios.get('http://localhost:3000/genres')
+      .then(async (response) => {
+        await context.commit('GENRES', response.data)
+      })
+  },
   getGenres (context, data) {
     console.log('getGenres', data)
     axios.get(`http://localhost:3000/genres?_page=${data.page}&_limit=${data.limit}`)

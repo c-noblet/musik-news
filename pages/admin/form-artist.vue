@@ -128,7 +128,7 @@ export default {
       this.$store.dispatch('artist/getOneArtist', id)
     },
     fetchGenres () {
-      this.$store.dispatch('genre/getGenres')
+      this.$store.dispatch('genre/getAllGenres')
     },
     redirect () {
       this.artist.id ? this.$store.dispatch('flashMessage/addSuccessMessage', 'Artiste/Groupe modifié avec succès !') : this.$store.dispatch('flashMessage/addSuccessMessage', 'Artiste/Groupe ajouté avec succès !')
