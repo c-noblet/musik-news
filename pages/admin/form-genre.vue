@@ -65,7 +65,7 @@ export default {
       this.$store.dispatch('genre/getOneGenre', id)
     },
     redirect () {
-      this.genre.id ? this.flash('Genre modifié avec succès !', 'succes', { timeout: 5000 }) : this.flash('Genre ajouté avec succès !', 'succes', { timeout: 5000 })
+      this.genre.id ? this.$store.dispatch('flashMessage/addSuccessMessage', 'Genre modifié avec succès !') : this.$store.dispatch('flashMessage/addSuccessMessage', 'Genre ajouté avec succès !')
       this.$router.push('/admin/genres')
     }
   },

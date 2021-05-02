@@ -46,7 +46,7 @@ export default {
     deleteArtist (id) {
       this.$store.dispatch('artist/deleteArtist', id)
         .then(() => {
-          this.flash('Artiste/Groupe supprimé avec succès !', 'success', { timeout: 5000 })
+          this.$store.dispatch('flashMessage/addSuccessMessage', 'Artiste/Groupe supprimé avec succès !')
           this.fetchArtists()
         })
     }

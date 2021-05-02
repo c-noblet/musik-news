@@ -33,7 +33,7 @@ export default {
       })
         .then((msg) => {
           this.$router.push('/')
-          this.flash('Inscription réussie !', 'success', { timeout: 5000 })
+          this.$store.dispatch('flashMessage/addSuccessMessage', 'Inscription réussie !')
         })
     }
   }

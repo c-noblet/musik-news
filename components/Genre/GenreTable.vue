@@ -57,7 +57,7 @@ export default {
     deleteGenre (id) {
       this.$store.dispatch('genre/deleteGenre', id)
         .then(() => {
-          this.flash('Genre supprimé avec succès !', 'success', { timeout: 5000 })
+          this.$store.dispatch('flashMessage/addSuccessMessage', 'Genre supprimé avec succès !')
           this.fetchGenres()
         })
     },

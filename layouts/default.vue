@@ -28,7 +28,11 @@
 </template>
 
 <script>
+import FlashMessage from '~/components/Global/FlashMessage.vue'
 export default {
+  components: {
+    'flash-message': FlashMessage
+  },
   name: 'RootComponent',
   data () {
     return {
@@ -41,7 +45,7 @@ export default {
     logout (e) {
       this.$store.dispatch('auth/logout')
         .then(() => {
-          this.flash('Déconnexion réussie !', 'success', { timeout: 5000 })
+          this.$store.dispatch('flashMessage/addSuccessMessage', 'Déconnexion réussie !')
           this.$router.push('/login')
         })
     },
@@ -55,7 +59,6 @@ export default {
     this.user = this.$store.getters['auth/getUser']
 
     this.unsubscribe = this.$store.subscribe((mutations) => {
-      console.log(mutations.payload)
       if (mutations.type === 'auth/ISAUTH') {
         this.isAuth = mutations.payload
       } else if (mutations.type === 'auth/ROLE') {
