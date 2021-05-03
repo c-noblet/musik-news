@@ -85,18 +85,6 @@ export default {
     fetchUserInfo () {
       this.$store.dispatch('auth/getUserInfo')
     }
-  },
-  methods: {
-    logout (e) {
-      this.$store.dispatch('auth/logout')
-        .then(() => {
-          this.flash('Déconnexion réussie !', 'success', { timeout: 5000 })
-          this.$router.push('/login')
-        })
-    },
-    fetchUserInfo () {
-      this.$store.dispatch('auth/getUserInfo')
-    }
   }
 }
 </script>

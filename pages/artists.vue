@@ -38,7 +38,9 @@
             v-model="searchArtistObject.genreId"
             class="block w-full bg-white border px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
           >
-            <option value="" selected>-- Genre --</option>
+            <option value="" selected>
+              -- Genre --
+            </option>
             <option
               v-for="genre in genres"
               :key="genre.id"
@@ -55,23 +57,19 @@
         </button>
       </div>
     </form>
-    <div class="flex flex-row flex-wrap justify-around items-center" v-if="nbArtists != 0">
+    <div v-if="nbArtists != 0" class="flex flex-row flex-wrap justify-around items-center">
       <artist-card v-for="artist in artists" :key="artist.id" :artist="artist" />
     </div>
-    <div class="flex flex-row flex-wrap justify-around items-center" v-else>
+    <div v-else class="flex flex-row flex-wrap justify-around items-center">
       <p>Aucun artiste trouvé</p>
     </div>
-    <pagination :nbElement="nbArtists" :limit="limit" :currentPage="currentPage" @changePage="changePage($event)" />
+    <pagination :nb-element="nbArtists" :limit="limit" :current-page="currentPage" @changePage="changePage($event)" />
   </div>
 </template>
 
 <script>
-<<<<<<< HEAD
-import ArtistCard from '~/components/Artist/ArtistCard.vue'
-=======
 import ArtistCard from '@/components/Artist/ArtistCard.vue'
 import Pagination from '@/components/Common/Pagination'
->>>>>>> 4d073bff5173f0a9f52bfcaa053290dd40b4508f
 
 export default {
   components: {
@@ -97,17 +95,6 @@ export default {
       currentPage: 1
     }
   },
-<<<<<<< HEAD
-  mounted () {
-    this.fetchArtists()
-  },
-  methods: {
-    fetchArtists () {
-      this.$axios.get('/artists')
-        .then((response) => {
-          this.artists = response.data
-        })
-=======
   created () {
     this.unsubscribe = this.$store.subscribe((mutations) => {
       if (mutations.type === 'artist/ARTISTS') {
@@ -152,7 +139,6 @@ export default {
     changePage (data) {
       this.currentPage = data
       this.fetchArtists({ page: data, limit: this.limit })
->>>>>>> 4d073bff5173f0a9f52bfcaa053290dd40b4508f
     }
   }
 }
