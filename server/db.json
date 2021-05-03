@@ -58,6 +58,13 @@
       "likes": [
         "3"
       ]
+    },
+    {
+      "email": "coco@gmail.com",
+      "password": "$2a$10$E5Tx8UkZfrhsNOU0Z5JG8.zGSEMSTJLTZuT/vE.3/svaFIO2hKIMu",
+      "username": "azerty",
+      "role": "user",
+      "id": 10
     }
   ],
   "news": [

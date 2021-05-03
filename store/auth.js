@@ -40,7 +40,7 @@ export const mutations = {
 
 export const actions = {
   async login (context, data) {
-    await axios.post('http://localhost:3000/login', {
+    await this.$axios.post('/login', {
       email: data.email,
       password: data.password
     })
@@ -70,14 +70,14 @@ export const actions = {
       })
   },
   async register (context, data) {
-    const res = await axios.post('http://localhost:3000/register', {
+    const res = await this.$axios.post('/register', {
       email: data.email,
       password: data.password,
       username: data.username,
       role: 'user' // default role for new user
     })
 
-    console.log(res)
+    console.log(res.data)
     const { accessToken } = res.data
 
     state.user = jwtDecode(accessToken)
@@ -104,7 +104,7 @@ export const actions = {
   },
   async getUserInfo (context) {
     if (localStorage.getItem('musik_news_user_id') && localStorage.getItem('musik_news_token')) {
-      await axios.get(`http://localhost:3000/users/${localStorage.getItem('musik_news_user_id')}`, {
+      await this.$axios.get(`/users/${localStorage.getItem('musik_news_user_id')}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('musik_news_token')}`
         }
@@ -122,7 +122,7 @@ export const actions = {
   },
   async likeArtist (context, data) {
     if (localStorage.getItem('musik_news_user_id') && localStorage.getItem('musik_news_token')) {
-      await axios.get(`http://localhost:3000/users/${localStorage.getItem('musik_news_user_id')}`, {
+      await this.$axios.get(`/users/${localStorage.getItem('musik_news_user_id')}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('musik_news_token')}`
         }
@@ -142,7 +142,7 @@ export const actions = {
           return artistsLiked
         })
         .then((artists) => {
-          axios.patch(`http://localhost:3000/users/${localStorage.getItem('musik_news_user_id')}`,
+          this.$axios.patch(`/users/${localStorage.getItem('musik_news_user_id')}`,
             {
               likes: artists
             },
