@@ -54,7 +54,10 @@
       "password": "$2a$10$1OVuEB8JljPVEkL.xtwaluejiwa6izZVj2HNW2h/.2gS/TbJ91RbO",
       "username": "vgimonnet",
       "role": "admin",
-      "id": 9
+      "id": 9,
+      "likes": [
+        "3"
+      ]
     }
   ],
   "news": [

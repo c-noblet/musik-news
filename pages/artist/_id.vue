@@ -1,7 +1,17 @@
 <template>
   <div>
-    <h1>{{ artist.name }}</h1>
     <img :src="artist.avatar" alt="Avatar de l'artiste/groupe">
+    <div class="flex flex-row justify-center items-center">
+      <h1>{{ artist.name }}</h1>
+      <button
+        :disabled="!isAuth"
+        @click="like()"
+        :class="btnLikeClassName"
+      >
+        <!-- TODO : replace libelle by font awesome or svg -->
+        {{ btnLikeLibelle }}
+      </button>
+    </div>
     <p>{{ artist.description }}</p>
     <div class="flex flex-row justify-around items-center">
       <span>{{ artist.origin }}</span>
@@ -45,27 +55,50 @@ export default {
         name: null
       },
       albums: [],
-      concerts: []
+      concerts: [],
+      isAuth: false,
+      user: null,
+      btnLikeClassName: 'btn-like-artist',
+      btnLikeLibelle: 'Like',
+      alreadyLiked: false
     }
   },
+  created () {
+    this.isAuth = this.$store.getters['auth/getIsAuth']
+    this.user = this.$store.getters['auth/getUser']
+
+    this.unsubscribe = this.$store.subscribe((mutations) => {
+      if (mutations.type === 'auth/ISAUTH') {
+        this.isAuth = mutations.payload
+      } else if (mutations.type === 'auth/USER') {
+        this.user = mutations.payload
+      } else if (mutations.type === 'artist/ARTIST') {
+        this.artist = mutations.payload
+        this.fetchGenre(this.artist.genreId)
+        this.fetchAlbums(this.artist.id)
+        this.fetchConcerts(this.artist.id)
+      } else if (mutations.type === 'genre/GENRE') {
+        this.genre = mutations.payload
+      } else if (mutations.type === 'album/ALBUMS') {
+        this.albums = mutations.payload
+      } else if (mutations.type === 'concert/CONCERTS') {
+        this.concerts = mutations.payload
+      }
+    })
+  },
   mounted () {
+    this.fetchUserInfo()
     this.fetchArtist()
   },
   methods: {
+    fetchUserInfo () {
+      this.$store.dispatch('auth/getUserInfo')
+    },
     fetchArtist () {
-      axios.get(`http://localhost:3000/artists/${this.idArtist}`)
-        .then((response) => {
-          this.artist = response.data
-          this.fetchGenre(this.artist.genreId)
-          this.fetchAlbums(this.artist.id)
-          this.fetchConcerts(this.artist.id)
-        })
+      this.$store.dispatch('artist/getOneArtist', this.$route.params.id)
     },
     fetchGenre (id) {
-      axios.get(`http://localhost:3000/genres/${id}`)
-        .then((response) => {
-          this.genre = response.data
-        })
+      this.$store.dispatch('genre/getOneGenre', id)
     },
     fetchAlbums (idArtist) {
       axios.get(`http://localhost:3000/albums?artistId=${idArtist}`)
@@ -78,7 +111,47 @@ export default {
         .then((response) => {
           this.concerts = response.data
         })
+    },
+    like () {
+      this.$store.dispatch('auth/likeArtist', { idArtist: this.$route.params.id, remove: this.alreadyLiked })
+        .then(() => {
+          if (this.alreadyLiked) {
+            this.btnLikeClassName = 'btn-like-artist'
+            this.btnLikeLibelle = 'Like'
+            this.alreadyLiked = false
+          } else {
+            this.btnLikeClassName = 'btn-like-artist unlike'
+            this.btnLikeLibelle = 'Unlike'
+            this.alreadyLiked = true
+          }
+        })
+    }
+  },
+  watch: {
+    user () {
+      this.btnLikeClassName = 'btn-like-artist'
+      this.btnLikeLibelle = 'Like'
+      this.alreadyLiked = false
+      if (this.user) {
+        if (this.user.likes) {
+          if (this.user.likes.includes(this.$route.params.id)) {
+            this.btnLikeClassName = 'btn-like-artist unlike'
+            this.btnLikeLibelle = 'Unlike'
+            this.alreadyLiked = true
+          }
+        }
+      }
     }
   }
 }
 </script>
+
+<style scoped>
+.btn-like-artist {
+  color: blue;
+}
+
+.unlike {
+  color: red !important;
+}
+</style>
