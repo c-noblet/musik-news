@@ -119,5 +119,40 @@ export const actions = {
       await context.commit('USER', false)
       await context.commit('ROLE', false)
     }
+  },
+  async likeArtist (context, data) {
+    if (localStorage.getItem('musik_news_user_id') && localStorage.getItem('musik_news_token')) {
+      await axios.get(`http://localhost:3000/users/${localStorage.getItem('musik_news_user_id')}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('musik_news_token')}`
+        }
+      })
+        .then((response) => {
+          const user = response.data
+          let artistsLiked = []
+          if (user.likes) {
+            artistsLiked = user.likes
+          }
+          if (data.remove) {
+            artistsLiked.splice(artistsLiked.indexOf(data.idArtist), 1)
+          } else {
+            artistsLiked.push(data.idArtist)
+          }
+
+          return artistsLiked
+        })
+        .then((artists) => {
+          axios.patch(`http://localhost:3000/users/${localStorage.getItem('musik_news_user_id')}`,
+            {
+              likes: artists
+            },
+            {
+              headers: {
+                Authorization: `Bearer ${localStorage.getItem('musik_news_token')}`
+              }
+            }
+          )
+        })
+    }
   }
 }

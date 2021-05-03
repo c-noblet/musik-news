@@ -12,10 +12,15 @@
         <td>{{ artist.name }}</td>
         <td>{{ artist.origin }}</td>
         <td>
+<<<<<<< HEAD
           <button>Modifier</button>
           <button @click="deleteArtist(artist)">
             Supprimer
           </button>
+=======
+          <NuxtLink :to="{name: 'admin-form-artist', params: {artistId: artist.id}}">Modifier</NuxtLink>
+          <button @click="deleteArtist(artist.id)">Supprimer</button>
+>>>>>>> 4d073bff5173f0a9f52bfcaa053290dd40b4508f
         </td>
       </tr>
     </tbody>
@@ -43,10 +48,14 @@ export default {
   },
   methods: {
     fetchArtists () {
-      this.$store.dispatch('artist/getArtists')
+      this.$store.dispatch('artist/getAllArtists')
     },
-    deleteArtist (artist) {
-      console.log('deleteArtist')
+    deleteArtist (id) {
+      this.$store.dispatch('artist/deleteArtist', id)
+        .then(() => {
+          this.$store.dispatch('flashMessage/addSuccessMessage', 'Artiste/Groupe supprimé avec succès !')
+          this.fetchArtists()
+        })
     }
   }
 }

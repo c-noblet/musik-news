@@ -30,7 +30,7 @@ export default {
       })
         .then((msg) => {
           this.$router.push('/')
-          this.flash('Connexion réussie !', 'success', { timeout: 5000 })
+          this.$store.dispatch('flashMessage/addSuccessMessage', 'Connexion réussie !')
         })
     }
   }

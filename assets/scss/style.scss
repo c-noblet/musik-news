@@ -2,3 +2,36 @@
 @import './utils/typo.scss';
 @import './components/button.scss';
 @import './components/form.scss';
+
+
+.artist-card {
+  margin: 1rem;
+  img {
+    width: 15rem;
+    height: 15rem;
+    margin-bottom: 1rem;
+    border-radius: 4px;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+  }
+  h2 {
+    color: $white;
+    font-weight: bold;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+  }
+  &:hover {
+    img{
+      opacity: 0.5;
+    }
+    h2 {
+      color: $primary;
+    }
+  }
+}

@@ -1,8 +1,24 @@
-html {
+@import url('https://fonts.googleapis.com/css?family=Ubuntu');
+
+$font-ubuntu: 'Ubuntu';
+
+html, body {
   font-size: 62.5%;
+  font-family: $font-ubuntu;
+  background: $background;
+  color: $white;
 }
 
 body {
+<<<<<<< HEAD
   font-size: 1.6rem;
+=======
+  font-size: 62.5%;
+  font-size: 1.2rem;
+>>>>>>> 4d073bff5173f0a9f52bfcaa053290dd40b4508f
   min-height: 100vh;
+}
+
+.text-grey {
+  color: $grey;
 }
