@@ -20,11 +20,8 @@ export default {
       article: {}
     }
   },
-  mounted () {
-    this.$axios.get(`/news/${this.$route.params.id}`)
-      .then((response) => {
-        this.article = response.data
-      })
+  async mounted () {
+    this.article = await this.$store.dispatch('article/fetchArticle', this.$route.params.id)
   }
 }
 </script>

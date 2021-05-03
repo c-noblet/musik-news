@@ -12,15 +12,12 @@
         <td>{{ artist.name }}</td>
         <td>{{ artist.origin }}</td>
         <td>
-<<<<<<< HEAD
-          <button>Modifier</button>
-          <button @click="deleteArtist(artist)">
+          <NuxtLink :to="{name: 'admin-form-artist', params: {artistId: artist.id}}">
+            Modifier
+          </NuxtLink>
+          <button @click="deleteArtist(artist.id)">
             Supprimer
           </button>
-=======
-          <NuxtLink :to="{name: 'admin-form-artist', params: {artistId: artist.id}}">Modifier</NuxtLink>
-          <button @click="deleteArtist(artist.id)">Supprimer</button>
->>>>>>> 4d073bff5173f0a9f52bfcaa053290dd40b4508f
         </td>
       </tr>
     </tbody>

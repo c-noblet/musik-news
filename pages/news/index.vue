@@ -2,8 +2,8 @@
   <div class="container mx-auto">
     <h1>News</h1>
     <ul>
-      <li v-for="newData in news" :key="newData.id" :new="newData">
-        <Article :data="newData" />
+      <li v-for="article in articles" :key="article.id">
+        <Article :data="article" />
       </li>
     </ul>
   </div>
@@ -18,19 +18,11 @@ export default {
   },
   data () {
     return {
-      news: []
+      articles: []
     }
   },
-  mounted () {
-    this.fetchNews()
-  },
-  methods: {
-    fetchNews () {
-      this.$axios.get('/news')
-        .then((response) => {
-          this.news = response.data
-        })
-    }
+  async mounted () {
+    this.articles = await this.$store.dispatch('article/fetchArticles')
   }
 }
 </script>

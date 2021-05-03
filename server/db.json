@@ -54,21 +54,10 @@
       "password": "$2a$10$1OVuEB8JljPVEkL.xtwaluejiwa6izZVj2HNW2h/.2gS/TbJ91RbO",
       "username": "vgimonnet",
       "role": "admin",
-<<<<<<< HEAD
-      "id": 9
-    },
-    {
-      "email": "coco@gmail.com",
-      "password": "$2a$10$E5Tx8UkZfrhsNOU0Z5JG8.zGSEMSTJLTZuT/vE.3/svaFIO2hKIMu",
-      "username": "azerty",
-      "role": "user",
-      "id": 10
-=======
       "id": 9,
       "likes": [
         "3"
       ]
->>>>>>> 4d073bff5173f0a9f52bfcaa053290dd40b4508f
     }
   ],
   "news": [

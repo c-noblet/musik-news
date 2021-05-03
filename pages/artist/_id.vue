@@ -5,8 +5,8 @@
       <h1>{{ artist.name }}</h1>
       <button
         :disabled="!isAuth"
-        @click="like()"
         :class="btnLikeClassName"
+        @click="like()"
       >
         <!-- TODO : replace libelle by font awesome or svg -->
         {{ btnLikeLibelle }}
@@ -61,6 +61,22 @@ export default {
       alreadyLiked: false
     }
   },
+  watch: {
+    user () {
+      this.btnLikeClassName = 'btn-like-artist'
+      this.btnLikeLibelle = 'Like'
+      this.alreadyLiked = false
+      if (this.user) {
+        if (this.user.likes) {
+          if (this.user.likes.includes(this.$route.params.id)) {
+            this.btnLikeClassName = 'btn-like-artist unlike'
+            this.btnLikeLibelle = 'Unlike'
+            this.alreadyLiked = true
+          }
+        }
+      }
+    }
+  },
   created () {
     this.isAuth = this.$store.getters['auth/getIsAuth']
     this.user = this.$store.getters['auth/getUser']
@@ -93,26 +109,10 @@ export default {
       this.$store.dispatch('auth/getUserInfo')
     },
     fetchArtist () {
-<<<<<<< HEAD
-      this.$axios.get(`/artists/${this.idArtist}`)
-        .then((response) => {
-          this.artist = response.data
-          this.fetchGenre(this.artist.genreId)
-          this.fetchAlbums(this.artist.id)
-          this.fetchConcerts(this.artist.id)
-        })
-    },
-    fetchGenre (id) {
-      this.$axios.get(`/genres/${id}`)
-        .then((response) => {
-          this.genre = response.data
-        })
-=======
       this.$store.dispatch('artist/getOneArtist', this.$route.params.id)
     },
     fetchGenre (id) {
       this.$store.dispatch('genre/getOneGenre', id)
->>>>>>> 4d073bff5173f0a9f52bfcaa053290dd40b4508f
     },
     fetchAlbums (idArtist) {
       this.$axios.get(`/albums?artistId=${idArtist}`)
@@ -139,22 +139,6 @@ export default {
             this.alreadyLiked = true
           }
         })
-    }
-  },
-  watch: {
-    user () {
-      this.btnLikeClassName = 'btn-like-artist'
-      this.btnLikeLibelle = 'Like'
-      this.alreadyLiked = false
-      if (this.user) {
-        if (this.user.likes) {
-          if (this.user.likes.includes(this.$route.params.id)) {
-            this.btnLikeClassName = 'btn-like-artist unlike'
-            this.btnLikeLibelle = 'Unlike'
-            this.alreadyLiked = true
-          }
-        }
-      }
     }
   }
 }

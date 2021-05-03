@@ -42,10 +42,10 @@
 <script>
 import FlashMessage from '~/components/Global/FlashMessage.vue'
 export default {
+  name: 'RootComponent',
   components: {
     'flash-message': FlashMessage
   },
-  name: 'RootComponent',
   data () {
     return {
       isAuth: null,
@@ -53,21 +53,6 @@ export default {
       user: null
     }
   },
-<<<<<<< HEAD
-=======
-  methods: {
-    logout (e) {
-      this.$store.dispatch('auth/logout')
-        .then(() => {
-          this.$store.dispatch('flashMessage/addSuccessMessage', 'Déconnexion réussie !')
-          this.$router.push('/login')
-        })
-    },
-    fetchUserInfo () {
-      this.$store.dispatch('auth/getUserInfo')
-    }
-  },
->>>>>>> 4d073bff5173f0a9f52bfcaa053290dd40b4508f
   created () {
     this.isAuth = this.$store.getters['auth/getIsAuth']
     this.role = this.$store.getters['auth/getRole']
@@ -88,6 +73,18 @@ export default {
   },
   beforeDestroy () {
     this.unsubscribe()
+  },
+  methods: {
+    logout (e) {
+      this.$store.dispatch('auth/logout')
+        .then(() => {
+          this.$store.dispatch('flashMessage/addSuccessMessage', 'Déconnexion réussie !')
+          this.$router.push('/login')
+        })
+    },
+    fetchUserInfo () {
+      this.$store.dispatch('auth/getUserInfo')
+    }
   },
   methods: {
     logout (e) {

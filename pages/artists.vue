@@ -1,8 +1,4 @@
 <template>
-<<<<<<< HEAD
-  <div class="flex flex-row flex-wrap justify-around items-center">
-    <artist-card v-for="artist in artists" :key="artist.id" :artist="artist" />
-=======
   <div class="flex flex-col justify-center items-center mt-10">
     <form
       class="p-6 mb-10 w-full md:w-3/5"
@@ -66,7 +62,6 @@
       <p>Aucun artiste trouvé</p>
     </div>
     <pagination :nbElement="nbArtists" :limit="limit" :currentPage="currentPage" @changePage="changePage($event)" />
->>>>>>> 4d073bff5173f0a9f52bfcaa053290dd40b4508f
   </div>
 </template>
 
