@@ -65,6 +65,12 @@ export const actions = {
         await context.commit('NBARTISTS', response.headers['x-total-count'])
       })
   },
+  getTopArtists (context, data) {
+    axios.get('http://localhost:3000/artists?age}&_limit=5&_sort=likes&_order=desc')
+      .then(async (response) => {
+        await context.commit('ARTISTS', response.data)
+      })
+  },
   getOneArtist (context, id) {
     axios.get(`http://localhost:3000/artists/${id}`)
       .then(async (response) => {
@@ -83,14 +89,15 @@ export const actions = {
       description: data.description,
       origin: data.origin,
       avatar: data.avatar,
-      genreId: data.genreId
+      genreId: data.genreId,
+      likes: 0
     })
       .then(async (response) => {
         await context.commit('ARTISTCREATED', response.data)
       })
   },
   updateArtist (context, data) {
-    axios.put(`http://localhost:3000/artists/${data.id}`, {
+    axios.patch(`http://localhost:3000/artists/${data.id}`, {
       name: data.name,
       description: data.description,
       origin: data.origin,
