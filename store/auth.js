@@ -74,7 +74,8 @@ export const actions = {
       email: data.email,
       password: data.password,
       username: data.username,
-      role: 'user' // default role for new user
+      role: 'user', // default role for new user
+      likes: []
     })
 
     console.log(res.data)
