@@ -1,38 +1,48 @@
 <template>
   <div>
-    <img :src="artist.avatar" alt="Avatar de l'artiste/groupe">
-    <div class="flex flex-row justify-center items-center">
-      <h1>{{ artist.name }}</h1>
-      <button
-        :disabled="!isAuth"
-        @click="like()"
-        :class="btnLikeClassName"
-      >
-        <!-- TODO : replace libelle by font awesome or svg -->
-        {{ btnLikeLibelle }}
-      </button>
+    <div class="flex flex-col md:flex-row">
+      <img :src="artist.avatar" alt="Avatar de l'artiste/groupe" class="avatar-artist">
+      <div class="flex flex-col md:ml-5">
+          <h1>{{ artist.name }}</h1>
+        <div class="flex flex-row">
+          <span>{{ artist.likes }}</span>
+          <button
+            :disabled="!isAuth"
+            @click="like()"
+            :class="btnLikeClassName + ' ml-5'"
+          >
+            <!-- TODO : replace libelle by font awesome or svg -->
+            {{ btnLikeLibelle }}
+          </button>
+        </div>
+        <p>{{ artist.description }}</p>
+        <p>{{ artist.origin }}</p>
+        <p>{{ genre.name }}</p>
+      </div>
     </div>
-    <p>{{ artist.description }}</p>
-    <div class="flex flex-row justify-around items-center">
-      <span>{{ artist.origin }}</span>
-      <span>{{ artist.likes }}</span>
-      <span>{{ genre.name }}</span>
+    <div class="my-5">
+      <h2>Albums ({{ albums.length }})</h2>
+      <ul class="flex flex-row flew-wrap justify-start items-center">
+        <li v-for="album in albums" :key="album.id" :album="album" class="album flex flex-col justify-center items-center">
+          <div class="cover">
+            <div class="hover">
+              <p>{{ album.released }}</p>
+              <p>{{ album.tracks }} tracks</p>
+            </div>
+          </div>
+          <p>{{ album.name }}</p>
+        </li>
+      </ul>
     </div>
-    <h3>Nombre d'albums : {{ albums.length }}</h3>
-    <ul>
-      <li v-for="album in albums" :key="album.id" :album="album">
-        {{ album.name }} <br>
-        Sortie : {{ album.released }} <br>
-        Nombre de chanson : {{ album.tracks }}
-      </li>
-    </ul>
-    <h3>Nombre de concerts : {{ concerts.length }}</h3>
-    <ul>
-      <li v-for="concert in concerts" :key="concert.id" :concert="concert">
-        {{ concert.name }} <br>
-        Date : {{ concert.date }}
-      </li>
-    </ul>
+    <div>
+      <h2>Concerts ({{ concerts.length }})</h2>
+      <ul>
+        <li v-for="concert in concerts" :key="concert.id" :concert="concert">
+          {{ concert.name }} <br>
+          Date : {{ concert.date }}
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
