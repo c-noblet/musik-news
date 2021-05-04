@@ -1,8 +1,7 @@
 export const state = () => {
   return {
     article: {},
-    articles: [],
-    comments: []
+    articles: []
   }
 }
 
@@ -12,9 +11,6 @@ export const getters = {
   },
   articles (state) {
     return state.articles
-  },
-  comments (state) {
-    return state.comments
   }
 }
 
@@ -25,8 +21,8 @@ export const mutations = {
   ARTICLES (state, payload) {
     state.articles = payload
   },
-  COMMENTS (state, payload) {
-    state.comments = payload
+  COMMENT (state, payload) {
+    state.article.comments.push(payload)
   }
 }
 
@@ -60,21 +56,13 @@ export const actions = {
       }
     })
   },
-  async fetchComments ({ getters, commit }) {
-    await this.$axios.get('/comments')
-      .then(async (response) => {
-        await commit('COMMENTS', response.data)
-      })
-  },
   postComment ({ getters, commit }, comment) {
-    console.log(getters.article.id)
-    /* await this.$axios.post('/comments/', {
-      postId: getters.article.id,
-      userId: getters['auth/getUser'],
-      content: comment
+    commit('COMMENT', comment)
+    console.log(getters.article.comments)
+    this.$axios.put(`/news/${getters.article.id}`, getters.article, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('musik_news_token')}`
+      }
     })
-      .then((response) => {
-        console.log(response)
-      }) */
   }
 }
