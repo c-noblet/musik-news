@@ -1,6 +1,6 @@
 <template>
-  <div class="container">
-    <article v-if="article !== {}">
+  <div v-if="article !== null" class="container">
+    <article>
       <h1>{{ article.title }}</h1>
       <span>{{ article.published }}</span>
       <p>{{ article.content }}</p>
@@ -17,7 +17,7 @@ export default {
   },
   data () {
     return {
-      article: {}
+      article: null
     }
   },
   async mounted () {

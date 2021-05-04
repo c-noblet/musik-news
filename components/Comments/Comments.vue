@@ -1,20 +1,21 @@
 <template>
-  <div class="container">
-    <ul class="container mx-auto">
-      <li v-for="comment in comments" :key="comment.id" />
+  <div>
+    <CommentForm />
+    <ul>
+      <li v-for="comment in comments" :key="comment.id">
+        {{ comment }}
+      </li>
     </ul>
   </div>
 </template>
 <script>
+import CommentForm from './CommentForm'
+
 export default {
   name: 'Comments',
-  data () {
-    return {
-      comments: []
-    }
+  components: {
+    CommentForm
   },
-  async mounted () {
-    this.comments = await this.$store.dispatch('article/fetchArticles')
-  }
+  props: ['comments']
 }
 </script>
