@@ -1,5 +1,3 @@
-import axios from 'axios'
-
 export const state = () => {
   return {
     album: {
@@ -52,32 +50,32 @@ export const mutations = {
 export const actions = {
   // TODO : add errors manager
   getAllAlbums (context) {
-    axios.get('http://localhost:3000/albums?_expand=artist')
+    this.$axios.get('/albums?_expand=artist')
       .then(async (response) => {
         await context.commit('ALBUMS', response.data)
       })
   },
   getAlbums (context, data) {
-    axios.get(`http://localhost:3000/albums?_expand=artist&_page=${data.page}&_limit=${data.limit}${data.name ? '&name=' + data.name : ''}${data.origin ? '&origin=' + data.origin : ''}${data.genreId ? '&genreId=' + data.genreId : ''}`)
+    this.$axios.get(`/albums?_expand=artist&_page=${data.page}&_limit=${data.limit}${data.name ? '&name=' + data.name : ''}${data.origin ? '&origin=' + data.origin : ''}${data.genreId ? '&genreId=' + data.genreId : ''}`)
       .then(async (response) => {
         await context.commit('ALBUMS', response.data)
         await context.commit('NBALBUMS', response.headers['x-total-count'])
       })
   },
   getOneAlbum (context, id) {
-    axios.get(`http://localhost:3000/albums/${id}`)
+    this.$axios.get(`/albums/${id}`)
       .then(async (response) => {
         await context.commit('ALBUM', response.data)
       })
   },
   deleteAlbum (context, id) {
-    axios.delete(`http://localhost:3000/albums/${id}`)
+    this.$axios.delete(`/albums/${id}`)
       .then(async (response) => {
         await context.commit('ALBUMDELETED', response.data)
       })
   },
   createAlbum (context, data) {
-    axios.post('http://localhost:3000/albums', {
+    this.$axios.post('/albums', {
       name: data.name,
       released: data.released,
       tracks: data.tracks,
@@ -88,7 +86,7 @@ export const actions = {
       })
   },
   updateAlbum (context, data) {
-    axios.patch(`http://localhost:3000/albums/${data.id}`, {
+    this.$axios.patch(`/albums/${data.id}`, {
       name: data.name,
       released: data.released,
       tracks: data.tracks,
