@@ -58,10 +58,11 @@ export const actions = {
     })
   },
   createArticle (context, data) {
+    const date = new Date()
     this.$axios.post('/news', {
       title: data.title,
       content: data.content,
-      comments: []
+      published: date.toLocaleDateString()
     })
       .then(async (response) => {
         await context.commit('ARTICLECREATED', response.data)
