@@ -96,7 +96,6 @@ export default {
   },
   created () {
     this.unsubscribe = this.$store.subscribe((mutations) => {
-      console.log(mutations.type, mutations.payload)
       if (mutations.type === 'artist/ARTIST') {
         this.artist = mutations.payload
       } else if (mutations.type === 'genre/GENRES') {
@@ -110,9 +109,6 @@ export default {
     if (this.$route.params.artistId) {
       this.fetchArtist(this.$route.params.artistId)
     }
-  },
-  beforeDestroy () {
-    this.unsubscribe()
   },
   methods: {
     submitForm (event) {

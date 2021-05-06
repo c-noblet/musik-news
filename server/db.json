@@ -59,16 +59,6 @@
         "3",
         "4"
       ]
-<<<<<<< HEAD
-    },
-    {
-      "email": "coco@gmail.com",
-      "password": "$2a$10$E5Tx8UkZfrhsNOU0Z5JG8.zGSEMSTJLTZuT/vE.3/svaFIO2hKIMu",
-      "username": "azerty",
-      "role": "admin",
-      "id": 10
-=======
->>>>>>> 5e4dfb869dd832129a9d6b586fba39e338b081bc
     }
   ],
   "news": [
@@ -176,19 +166,19 @@
     {
       "id": 1,
       "name": "Paris Bercy",
-      "date": "10/12/2019",
+      "date": "2021-05-05",
       "artistId": 3
     },
     {
       "id": 2,
       "name": "Olympia",
-      "date": "10/12/2018",
+      "date": "2021-05-13",
       "artistId": 3
     },
     {
       "id": 3,
       "name": "O2 Academy Manchester",
-      "date": "10/12/2018",
+      "date": "2021-05-07",
       "artistId": 2
     }
   ]
