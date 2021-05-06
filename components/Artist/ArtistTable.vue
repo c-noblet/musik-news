@@ -12,8 +12,12 @@
         <td>{{ artist.name }}</td>
         <td>{{ artist.origin }}</td>
         <td>
-          <NuxtLink :to="{name: 'admin-form-artist', params: {artistId: artist.id}}">Modifier</NuxtLink>
-          <button @click="deleteArtist(artist.id)">Supprimer</button>
+          <NuxtLink :to="{name: 'admin-form-artist', params: {artistId: artist.id}}">
+            Modifier
+          </NuxtLink>
+          <button @click="deleteArtist(artist.id)">
+            Supprimer
+          </button>
         </td>
       </tr>
     </tbody>

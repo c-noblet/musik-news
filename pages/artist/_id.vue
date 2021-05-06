@@ -3,7 +3,7 @@
     <div class="flex flex-col md:flex-row">
       <img :src="artist.avatar" alt="Avatar de l'artiste/groupe" class="avatar-artist">
       <div class="flex flex-col md:ml-5">
-          <h1>{{ artist.name }}</h1>
+        <h1>{{ artist.name }}</h1>
         <div class="flex flex-row">
           <span>{{ artist.likes }}</span>
           <button
@@ -47,8 +47,6 @@
 </template>
 
 <script>
-import axios from 'axios'
-
 export default {
   data () {
     return {
@@ -71,6 +69,22 @@ export default {
       btnLikeClassName: 'btn-like-artist',
       btnLikeLibelle: 'Like',
       alreadyLiked: false
+    }
+  },
+  watch: {
+    user () {
+      this.btnLikeClassName = 'btn-like-artist'
+      this.btnLikeLibelle = 'Like'
+      this.alreadyLiked = false
+      if (this.user) {
+        if (this.user.likes) {
+          if (this.user.likes.includes(this.$route.params.id)) {
+            this.btnLikeClassName = 'btn-like-artist unlike'
+            this.btnLikeLibelle = 'Unlike'
+            this.alreadyLiked = true
+          }
+        }
+      }
     }
   },
   created () {
@@ -111,13 +125,13 @@ export default {
       this.$store.dispatch('genre/getOneGenre', id)
     },
     fetchAlbums (idArtist) {
-      axios.get(`http://localhost:3000/albums?artistId=${idArtist}`)
+      this.$axios.get(`/albums?artistId=${idArtist}`)
         .then((response) => {
           this.albums = response.data
         })
     },
     fetchConcerts (idArtist) {
-      axios.get(`http://localhost:3000/concerts?artistId=${idArtist}`)
+      this.$axios.get(`/concerts?artistId=${idArtist}`)
         .then((response) => {
           this.concerts = response.data
         })
@@ -135,22 +149,6 @@ export default {
             this.alreadyLiked = true
           }
         })
-    }
-  },
-  watch: {
-    user () {
-      this.btnLikeClassName = 'btn-like-artist'
-      this.btnLikeLibelle = 'Like'
-      this.alreadyLiked = false
-      if (this.user) {
-        if (this.user.likes) {
-          if (this.user.likes.includes(this.$route.params.id)) {
-            this.btnLikeClassName = 'btn-like-artist unlike'
-            this.btnLikeLibelle = 'Unlike'
-            this.alreadyLiked = true
-          }
-        }
-      }
     }
   }
 }

@@ -3,25 +3,37 @@
     <nav>
       <ul class="flex flex-row">
         <li>
-          <NuxtLink to="/">Home</NuxtLink>
+          <NuxtLink to="/">
+            Home
+          </NuxtLink>
         </li>
         <li>
-          <NuxtLink to="/news">News</NuxtLink>
+          <NuxtLink to="/news">
+            News
+          </NuxtLink>
         </li>
         <li>
-          <NuxtLink to="/artists">Artists</NuxtLink>
+          <NuxtLink to="/artists">
+            Artists
+          </NuxtLink>
         </li>
         <li v-if="role == 'admin'">
-          <NuxtLink to="/admin">Administration</NuxtLink>
+          <NuxtLink to="/admin">
+            Administration
+          </NuxtLink>
         </li>
         <li>
-          <button v-if="isAuth" @click="logout">Logout</button>
-          <NuxtLink v-else to="/login">Login</NuxtLink>
+          <button v-if="isAuth" @click="logout">
+            Logout
+          </button>
+          <NuxtLink v-else to="/login">
+            Login
+          </NuxtLink>
         </li>
       </ul>
     </nav>
     <main>
-      <flash-message></flash-message>
+      <flash-message />
       <Nuxt />
     </main>
   </div>
@@ -30,27 +42,15 @@
 <script>
 import FlashMessage from '~/components/Global/FlashMessage.vue'
 export default {
+  name: 'RootComponent',
   components: {
     'flash-message': FlashMessage
   },
-  name: 'RootComponent',
   data () {
     return {
       isAuth: null,
       role: null,
       user: null
-    }
-  },
-  methods: {
-    logout (e) {
-      this.$store.dispatch('auth/logout')
-        .then(() => {
-          this.$store.dispatch('flashMessage/addSuccessMessage', 'Déconnexion réussie !')
-          this.$router.push('/login')
-        })
-    },
-    fetchUserInfo () {
-      this.$store.dispatch('auth/getUserInfo')
     }
   },
   created () {
@@ -73,6 +73,18 @@ export default {
   },
   beforeDestroy () {
     this.unsubscribe()
+  },
+  methods: {
+    logout (e) {
+      this.$store.dispatch('auth/logout')
+        .then(() => {
+          this.$store.dispatch('flashMessage/addSuccessMessage', 'Déconnexion réussie !')
+          this.$router.push('/login')
+        })
+    },
+    fetchUserInfo () {
+      this.$store.dispatch('auth/getUserInfo')
+    }
   }
 }
 </script>
