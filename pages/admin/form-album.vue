@@ -27,6 +27,7 @@
           min="1900"
           :max="new Date().getFullYear()"
           step= "1"
+          placeholder="2020"
           required
           v-model="album.released"
         >
@@ -40,11 +41,13 @@
           id="tracks"
           min="0"
           step= "1"
+          placeholder="12"
           required
           v-model="album.tracks"
         >
       </div>
-      <div class="inline-block relative w-64">
+      <label class="block text-gray-700 text-sm font-bold mb-2">Artiste</label>
+      <div class="inline-block relative w-full mb-4">
         <select
           class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
           v-model="album.artistId"
@@ -62,8 +65,8 @@
           <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
         </div>
       </div>
-      <div class="flex items-center justify-between">
-        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+      <div class="flex items-center justify-center">
+        <button class="btn btn-primary" type="submit">
           {{ album.id ? 'Modifier' : 'Ajouter' }}
         </button>
       </div>

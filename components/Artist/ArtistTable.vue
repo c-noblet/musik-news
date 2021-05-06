@@ -45,7 +45,7 @@ export default {
     return {
       artists: [],
       nbArtists: null,
-      limit: 2,
+      limit: 5,
       currentPage: 1
     }
   },
