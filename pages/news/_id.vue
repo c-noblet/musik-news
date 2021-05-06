@@ -20,8 +20,15 @@ export default {
       article: null
     }
   },
-  async mounted () {
-    this.article = await this.$store.dispatch('article/fetchArticle', this.$route.params.id)
+  created () {
+    this.unsubscribe = this.$store.subscribe((mutations) => {
+      if (mutations.type === 'article/ARTICLE') {
+        this.article = mutations.payload
+      }
+    })
+  },
+  mounted () {
+    this.$store.dispatch('article/fetchArticle', this.$route.params.id)
   }
 }
 </script>

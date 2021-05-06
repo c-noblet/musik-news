@@ -21,8 +21,15 @@ export default {
       articles: []
     }
   },
-  async mounted () {
-    this.articles = await this.$store.dispatch('article/fetchArticles')
+  created () {
+    this.unsubscribe = this.$store.subscribe((mutations) => {
+      if (mutations.type === 'article/ARTICLES') {
+        this.articles = mutations.payload
+      }
+    })
+  },
+  mounted () {
+    this.$store.dispatch('article/fetchArticles')
   }
 }
 </script>

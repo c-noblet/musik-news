@@ -7,6 +7,7 @@ export const state = () => {
       artistId: null
     },
     albums: [],
+    lastAlbums: [],
     nbAlbums: 0,
     albumCreated: null,
     albumDeleted: null,
@@ -44,6 +45,9 @@ export const mutations = {
   },
   ALBUMUPDATED (state, payload) {
     state.albumUpdated = payload.data
+  },
+  LASTALBUMS (state, payload) {
+    state.lastAlbums = payload.data
   }
 }
 
@@ -53,6 +57,12 @@ export const actions = {
     this.$axios.get('/albums?_expand=artist')
       .then(async (response) => {
         await context.commit('ALBUMS', response.data)
+      })
+  },
+  getLastAlbums (context) {
+    this.$axios.get('/albums?_expand=artist&_sort=released&_order=asc&_limit=5')
+      .then(async (response) => {
+        await context.commit('LASTALBUMS', response.data)
       })
   },
   getAlbums (context, data) {
