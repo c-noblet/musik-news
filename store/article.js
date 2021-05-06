@@ -4,7 +4,8 @@ export const state = () => {
     articles: [],
     articleCreated: null,
     articleDeleted: null,
-    articleUpdated: null
+    articleUpdated: null,
+    lastArticles: []
   }
 }
 
@@ -23,6 +24,9 @@ export const mutations = {
   },
   ARTICLES (state, payload) {
     state.articles = payload.data
+  },
+  LASTARTICLES (state, payload) {
+    state.lastArticles = payload.data
   },
   ARTICLECREATED (state, payload) {
     state.articleCreated = payload.data
@@ -47,6 +51,11 @@ export const actions = {
   fetchArticle ({ getters, commit, dispatch }, id) {
     this.$axios.get(`/news/${id}`).then(async (response) => {
       await commit('ARTICLE', response.data)
+    })
+  },
+  fetchLastArticles ({ getters, commit }) {
+    this.$axios.get('/news?_sort=published&_order=asc_limit=5').then(async (response) => {
+      await commit('LASTARTICLES', response.data)
     })
   },
   postComment ({ getters, commit }, comment) {
