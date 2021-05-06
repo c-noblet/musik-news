@@ -22,11 +22,21 @@ export default {
       }
     })
   },
+  mounted () {
+    this.fetchUserInfo()
+  },
+  beforeDestroy () {
+    this.unsubscribe()
+  },
   methods: {
     sendComment (e) {
       e.preventDefault()
       this.$store.dispatch('article/postComment', this.comment)
+    },
+    fetchUserInfo () {
+      this.$store.dispatch('auth/getUserInfo')
     }
   }
+
 }
 </script>

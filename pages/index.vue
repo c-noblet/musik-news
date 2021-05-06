@@ -46,6 +46,9 @@ export default {
     this.fetchAlbums()
     this.fetchArtists()
   },
+  beforeDestroy () {
+    this.unsubscribe()
+  },
   methods: {
     fetchArticles () {
       this.$store.dispatch('article/fetchLastArticles')
