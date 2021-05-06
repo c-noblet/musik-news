@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-10">
+  <div class="mt-10 flex flex-row justify-center items-center">
     <button v-for="numPage in nbPages" :key="numPage" :class="numPage == currentPage ? 'btn-pagination active' : 'btn-pagination'" @click="$emit('changePage', numPage)">
       <span>{{ numPage }}</span>
     </button>

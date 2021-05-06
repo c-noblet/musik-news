@@ -55,7 +55,7 @@
         </div>
       </div>
     </aside>
-    <section class="mx-5 w-100">
+    <section class="mx-5 w-full">
       <Nuxt />
     </section>
   </div>

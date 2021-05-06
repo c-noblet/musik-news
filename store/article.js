@@ -5,7 +5,8 @@ export const state = () => {
     articleCreated: null,
     articleDeleted: null,
     articleUpdated: null,
-    lastArticles: []
+    lastArticles: [],
+    nbArticles: 0
   }
 }
 
@@ -24,6 +25,9 @@ export const mutations = {
   },
   ARTICLES (state, payload) {
     state.articles = payload.data
+  },
+  NBARTICLES (state, payload) {
+    state.nbArticles = payload.data
   },
   LASTARTICLES (state, payload) {
     state.lastArticles = payload.data
@@ -47,6 +51,13 @@ export const actions = {
     this.$axios.get('/news').then(async (response) => {
       await commit('ARTICLES', response.data)
     })
+  },
+  getArticles (context, data) {
+    this.$axios.get(`/news?_page=${data.page}&_limit=${data.limit}`)
+      .then(async (response) => {
+        await context.commit('ARTICLES', response.data)
+        await context.commit('NBARTICLES', response.headers['x-total-count'])
+      })
   },
   fetchArticle ({ getters, commit, dispatch }, id) {
     this.$axios.get(`/news/${id}`).then(async (response) => {
