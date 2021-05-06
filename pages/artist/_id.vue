@@ -17,13 +17,13 @@
         </div>
         <p>{{ artist.description }}</p>
         <p>{{ artist.origin }}</p>
-        <p>{{ genre.name }}</p>
+        <p v-if="artist.genre">{{ artist.genre.name }}</p>
       </div>
     </div>
     <div class="my-5">
-      <h2>Albums ({{ albums.length }})</h2>
-      <ul class="flex flex-row flew-wrap justify-start items-center">
-        <li v-for="album in albums" :key="album.id" :album="album" class="album flex flex-col justify-center items-center">
+      <h2>Albums ({{ artist.albums.length }})</h2>
+      <ul class="flex flex-row flew-wrap justify-start items-center" v-if="artist.albums.length > 0">
+        <li v-for="album in artist.albums" :key="album.id" :album="album" class="album flex flex-col justify-center items-center">
           <div class="cover">
             <div class="hover">
               <p>{{ album.released }}</p>
@@ -35,8 +35,8 @@
       </ul>
     </div>
     <div>
-      <h2>Concerts ({{ concerts.length }})</h2>
-      <ul>
+      <h2>Concerts ({{ artist.concerts.length }})</h2>
+      <ul v-if="artist.concerts.length > 0">
         <li v-for="concert in concerts" :key="concert.id" :concert="concert">
           {{ concert.name }} <br>
           Date : {{ concert.date }}
@@ -56,14 +56,14 @@ export default {
         avatar: null,
         description: null,
         origin: null,
-        likes: null,
-        genreId: null
+        likes: 0,
+        genreId: null,
+        albums: [],
+        concerts: [],
+        genre: {
+          name: null
+        }
       },
-      genre: {
-        name: null
-      },
-      albums: [],
-      concerts: [],
       isAuth: false,
       user: null,
       btnLikeClassName: 'btn-like-artist',
@@ -98,15 +98,8 @@ export default {
         this.user = mutations.payload
       } else if (mutations.type === 'artist/ARTIST') {
         this.artist = mutations.payload
-        this.fetchGenre(this.artist.genreId)
-        this.fetchAlbums(this.artist.id)
-        this.fetchConcerts(this.artist.id)
-      } else if (mutations.type === 'genre/GENRE') {
-        this.genre = mutations.payload
-      } else if (mutations.type === 'album/ALBUMS') {
-        this.albums = mutations.payload
-      } else if (mutations.type === 'concert/CONCERTS') {
-        this.concerts = mutations.payload
+      } else if (mutations.type === 'artist/ARTISTUPDATED') {
+        this.fetchArtist()
       }
     })
   },
@@ -121,22 +114,9 @@ export default {
     fetchArtist () {
       this.$store.dispatch('artist/getOneArtist', this.$route.params.id)
     },
-    fetchGenre (id) {
-      this.$store.dispatch('genre/getOneGenre', id)
-    },
-    fetchAlbums (idArtist) {
-      this.$axios.get(`/albums?artistId=${idArtist}`)
-        .then((response) => {
-          this.albums = response.data
-        })
-    },
-    fetchConcerts (idArtist) {
-      this.$axios.get(`/concerts?artistId=${idArtist}`)
-        .then((response) => {
-          this.concerts = response.data
-        })
-    },
     like () {
+      this.alreadyLiked ? this.artist.likes-- : this.artist.likes++
+      this.$store.dispatch('artist/likeArtist', this.artist)
       this.$store.dispatch('auth/likeArtist', { idArtist: this.$route.params.id, remove: this.alreadyLiked })
         .then(() => {
           if (this.alreadyLiked) {

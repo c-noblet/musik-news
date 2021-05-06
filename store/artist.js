@@ -72,7 +72,7 @@ export const actions = {
       })
   },
   getOneArtist (context, id) {
-    axios.get(`http://localhost:3000/artists/${id}`)
+    axios.get(`http://localhost:3000/artists/${id}?_expand=genre&_embed=albums&_embed=concerts`)
       .then(async (response) => {
         await context.commit('ARTIST', response.data)
       })
@@ -103,6 +103,14 @@ export const actions = {
       origin: data.origin,
       avatar: data.avatar,
       genreId: data.genreId
+    })
+      .then(async (response) => {
+        await context.commit('ARTISTUPDATED', response.data)
+      })
+  },
+  likeArtist (context, data) {
+    axios.patch(`http://localhost:3000/artists/${data.id}`, {
+      likes: data.likes
     })
       .then(async (response) => {
         await context.commit('ARTISTUPDATED', response.data)
