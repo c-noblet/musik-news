@@ -1,15 +1,52 @@
 <template>
-  <div>
-    <h1> Login </h1>
-    <label>Email</label>
-    <input v-model="email" value="valentin.gimonnet18@gmail.com"/>
-    <label>Password</label>
-    <input type="password" v-model="password" value="Admin123*"/>
-    <button @click="submitForm" class="btn">Se connecter</button>
-
-    <p>
-      Didn't have any account yet ? <NuxtLink to="/register">Register now !</NuxtLink>
-    </p>
+  <div class="flex flex-1 items-center justify-center">
+    <div class="px-4 lg:px-24 py-16 lg:max-w-xl sm:max-w-md w-full text-center">
+      <form
+        @submit="submitForm($event)"
+        class="text-center"
+      >
+        <h1 class="font-bold tracking-wider text-3xl mb-8 w-full text-white">
+          Connexion
+        </h1>
+        <div class="py-2 text-left">
+          <label class="block text-white text-sm font-bold mb-2" for="email">
+            Email
+          </label>
+          <input
+            type="email"
+            class="bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4 rounded-lg focus:border-gray-700 "
+            placeholder="Email"
+            id="email"
+            v-model="email"
+            required
+          />
+        </div>
+        <div class="py-2 text-left">
+          <label class="block text-white text-sm font-bold mb-2" for="password">
+            Mot de passe
+          </label>
+          <input
+            type="password"
+            class="bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4 rounded-lg focus:border-gray-700 "
+            placeholder="Password"
+            id="password"
+            required
+            v-model="password"
+          />
+        </div>
+        <div class="py-2 mt-4">
+          <button type="submit" class="btn btn-primary w-full">
+            Se connecter
+          </button>
+        </div>
+      </form>
+      <div class="text-center mt-12">
+        <span>
+          Vous n'avez pas encore de compte ?
+        </span>
+        <NuxtLink to="/register" class="font-light text-md text-primary underline font-semibold hover:text-white">Inscrivez-vous !</NuxtLink>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -23,7 +60,8 @@ export default {
     }
   },
   methods: {
-    submitForm () {
+    submitForm (event) {
+      event.preventDefault()
       this.$store.dispatch('auth/login', {
         email: this.email,
         password: this.password
