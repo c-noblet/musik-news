@@ -1,5 +1,3 @@
-import axios from 'axios'
-
 export const state = () => {
   return {
     genre: {
@@ -36,36 +34,33 @@ export const mutations = {
 
 export const actions = {
   getAllGenres (context) {
-    axios.get('http://localhost:3000/genres')
+    this.$axios.get('/genres')
       .then(async (response) => {
         await context.commit('GENRES', response.data)
       })
   },
   getGenres (context, data) {
-    console.log('getGenres', data)
-    axios.get(`http://localhost:3000/genres?_page=${data.page}&_limit=${data.limit}`)
+    this.$axios.get(`/genres?_page=${data.page}&_limit=${data.limit}`)
       .then(async (response) => {
-        console.log(response)
         await context.commit('GENRES', response.data)
         await context.commit('NBGENRES', response.headers['x-total-count'])
       })
   },
   getOneGenre (context, id) {
-    axios.get(`http://localhost:3000/genres/${id}`)
+    this.$axios.get(`/genres/${id}`)
       .then(async (response) => {
         console.log(response)
         await context.commit('GENRE', response.data)
       })
   },
   deleteGenre (context, id) {
-    console.log('genre/deleteGenre')
-    axios.delete(`http://localhost:3000/genres/${id}`)
+    this.$axios.delete(`/genres/${id}`)
       .then(async (response) => {
         await console.log(response)
       })
   },
   createGenre (context, data) {
-    axios.post('http://localhost:3000/genres', {
+    this.$axios.post('/genres', {
       name: data.name,
       description: data.description,
       origin: data.origin,
@@ -77,7 +72,7 @@ export const actions = {
       })
   },
   updateGenre (context, data) {
-    axios.put(`http://localhost:3000/genres/${data.id}`, {
+    this.$axios.put(`/genres/${data.id}`, {
       name: data.name,
       description: data.description,
       origin: data.origin,

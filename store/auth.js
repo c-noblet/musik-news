@@ -1,4 +1,3 @@
-import axios from 'axios'
 import jwtDecode from 'jwt-decode'
 
 export const state = () => {
@@ -59,7 +58,7 @@ export const actions = {
       .then(async (accessToken) => {
         await context.commit('ISAUTH', true)
         await context.commit('USER', state.user)
-        await axios.get(`http://localhost:3000/users/${state.user.sub}`, {
+        await this.axios.get(`/users/${state.user.sub}`, {
           headers: {
             Authorization: `Bearer ${accessToken}`
           }
