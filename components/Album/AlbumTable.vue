@@ -1,17 +1,17 @@
 <template>
-  <table>
+  <table class="rounded-t-lg m-5 w-5/6 mx-auto bg-gray-200 text-gray-800">
     <thead>
-      <tr>
-        <th>Nom</th>
-        <th>Artiste</th>
-        <th>Actions</th>
+      <tr class="text-left border-b border-gray-300">
+        <th class="px-4 py-3">Nom</th>
+        <th class="px-4 py-3">Artiste</th>
+        <th class="px-4 py-3">Actions</th>
       </tr>
     </thead>
     <tbody>
-      <tr v-for="album in albums" :key="album.id" :album="album">
-        <td>{{ album.name }}</td>
-        <td>{{ album.artist.name }}</td>
-        <td>
+      <tr class="bg-gray-100 border-b border-gray-200" v-for="album in albums" :key="album.id" :album="album">
+        <td class="px-4 py-3">{{ album.name }}</td>
+        <td class="px-4 py-3">{{ album.artist.name }}</td>
+        <td class="px-4 py-3">
           <NuxtLink :to="{name: 'admin-form-album', params: {albumId: album.id}}">
             Modifier
           </NuxtLink>

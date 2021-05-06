@@ -55,7 +55,7 @@
         </div>
       </div>
     </aside>
-    <section class="mx-5 admin">
+    <section class="mx-5 w-100">
       <Nuxt />
     </section>
   </div>
