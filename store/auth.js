@@ -58,7 +58,7 @@ export const actions = {
       .then(async (accessToken) => {
         await context.commit('ISAUTH', true)
         await context.commit('USER', state.user)
-        await this.axios.get(`/users/${state.user.sub}`, {
+        await this.$axios.get(`/users/${state.user.sub}`, {
           headers: {
             Authorization: `Bearer ${accessToken}`
           }
