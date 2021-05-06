@@ -166,19 +166,19 @@
     {
       "id": 1,
       "name": "Paris Bercy",
-      "date": "10/12/2019",
+      "date": "2021-05-05",
       "artistId": 3
     },
     {
       "id": 2,
       "name": "Olympia",
-      "date": "10/12/2018",
+      "date": "2021-05-13",
       "artistId": 3
     },
     {
-      "id": 1,
+      "id": 3,
       "name": "O2 Academy Manchester",
-      "date": "10/12/2018",
+      "date": "2021-05-07",
       "artistId": 2
     }
   ]
