@@ -1,18 +1,28 @@
 <template>
   <div>
-    <table>
+    <table class="rounded-t-lg m-5 w-5/6 mx-auto bg-gray-200 text-gray-800">
       <thead>
-        <tr>
-          <th>Nom</th>
-          <th>Actions</th>
+        <tr class="text-left border-b border-gray-300">
+          <th class="px-4 py-3">Nom</th>
+          <th class="px-4 py-3">Actions</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="genre in genres" :key="genre.id" :genre="genre">
-          <td>{{ genre.name }}</td>
-          <td>
-            <NuxtLink :to="{name: 'admin-form-genre', params: {genreId: genre.id}}">Modifier</NuxtLink>
-            <button @click="deleteGenre(genre.id)">Supprimer</button>
+        <tr class="bg-gray-100 border-b border-gray-200" v-for="genre in genres" :key="genre.id" :genre="genre">
+          <td class="px-4 py-3">{{ genre.name }}</td>
+          <td class="px-4 py-3">
+            <div class="flex item-center justify-start">
+              <NuxtLink :to="{name: 'admin-form-genre', params: {genreId: genre.id}}" class="btn-action">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#000000">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                </svg>
+              </NuxtLink>
+              <button @click="deleteGenre(genre.id)" class="btn-action ml-5">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#000000">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                </svg>
+              </button>
+            </div>
           </td>
         </tr>
       </tbody>
@@ -58,7 +68,7 @@ export default {
       this.$store.dispatch('genre/deleteGenre', id)
         .then(() => {
           this.$store.dispatch('flashMessage/addSuccessMessage', 'Genre supprimé avec succès !')
-          this.fetchGenres()
+          this.fetchGenres({ page: this.currentPage, limit: this.limit })
         })
     },
     changePage (data) {

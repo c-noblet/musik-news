@@ -1,8 +1,8 @@
 <template>
-  <div class="w-100">
+  <div class="w-full">
     <h1 class="flex items-center py-2 px-8 border-l-4 border-gray-100 text-3xl font-semibold mb-3">Gestion des albums</h1>
     <div class="text-right">
-      <NuxtLink to="/admin/form-album" class="ml-auto">Ajouter</NuxtLink>
+      <NuxtLink to="/admin/form-album" class="btn btn-primary ml-auto">Ajouter</NuxtLink>
     </div>
     <table-album />
   </div>

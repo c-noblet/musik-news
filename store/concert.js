@@ -51,13 +51,13 @@ export const mutations = {
 export const actions = {
   // TODO : add errors manager
   getAllConcerts (context) {
-    this.$axios.get('/concerts')
+    this.$axios.get('/concerts?_expand=artist')
       .then(async (response) => {
         await context.commit('CONCERTS', response.data)
       })
   },
   getConcerts (context, data) {
-    this.$axios.get(`/concerts?_page=${data.page}&_limit=${data.limit}${data.name ? '&name=' + data.name : ''}${data.origin ? '&origin=' + data.origin : ''}${data.genreId ? '&genreId=' + data.genreId : ''}`)
+    this.$axios.get(`/concerts?_expand=artist&_page=${data.page}&_limit=${data.limit}${data.name ? '&name=' + data.name : ''}`)
       .then(async (response) => {
         await context.commit('CONCERTS', response.data)
         await context.commit('NBCONCERTS', response.headers['x-total-count'])

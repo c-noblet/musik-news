@@ -1,58 +1,79 @@
 <template>
   <div>
-    <table>
+    <table class="rounded-t-lg m-5 w-5/6 mx-auto bg-gray-200 text-gray-800">
       <thead>
-        <tr>
-          <th>Titre</th>
-          <th>Message</th>
-          <th>Actions</th>
+        <tr class="text-left border-b border-gray-300">
+          <th class="px-4 py-3">Titre</th>
+          <th class="px-4 py-3">Message</th>
+          <th class="px-4 py-3">Actions</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="article in articles" :key="article.id">
-          <td>{{ article.title }}</td>
-          <td>{{ article.content }}</td>
-          <td>
-            <NuxtLink :to="{name: 'admin-form-article', params: { articleId: article.id }}">
-              Modifier
-            </NuxtLink>
-            <button @click="deleteArticle(article.id)">
-              Supprimer
-            </button>
+        <tr class="bg-gray-100 border-b border-gray-200" v-for="article in articles" :key="article.id">
+          <td class="px-4 py-3">{{ article.title }}</td>
+          <td class="px-4 py-3">{{ article.content }}</td>
+          <td class="px-4 py-3">
+            <div class="flex item-center justify-start">
+              <NuxtLink :to="{name: 'admin-form-article', params: {articleId: article.id}}" class="btn-action">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#000000">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                </svg>
+              </NuxtLink>
+              <button @click="deleteArticle(article.id)" class="btn-action ml-5">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#000000">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                </svg>
+              </button>
+            </div>
           </td>
         </tr>
       </tbody>
     </table>
+    <pagination :nbElement="nbArticles" :limit="limit" :currentPage="currentPage" @changePage="changePage($event)"/>
   </div>
 </template>
 <script>
+import Pagination from '@/components/Common/Pagination'
+
 export default {
   name: 'ArticleTable',
+  components: {
+    pagination: Pagination
+  },
   data () {
     return {
-      articles: []
+      articles: [],
+      nbArticles: null,
+      limit: 5,
+      currentPage: 1
     }
   },
   created () {
     this.unsubscribe = this.$store.subscribe((mutations) => {
       if (mutations.type === 'article/ARTICLES') {
         this.articles = mutations.payload
+      } else if (mutations.type === 'article/NBARTICLES') {
+        this.nbArticles = mutations.payload
       }
     })
   },
   mounted () {
-    this.fetchArticles()
+    this.fetchArticles({ page: this.currentPage, limit: this.limit })
   },
   methods: {
-    fetchArticles () {
-      this.$store.dispatch('article/fetchArticles')
+    fetchArticles (params) {
+      this.$store.dispatch('article/getArticles', params)
     },
     deleteArticle (id) {
       this.$store.dispatch('article/deleteArticle', id)
         .then(() => {
           this.$store.dispatch('flashMessage/addSuccessMessage', 'Articles supprimé avec succès !')
-          this.fetchArticles()
+          this.fetchArticles({ page: this.currentPage, limit: this.limit })
         })
+    },
+    changePage (data) {
+      this.currentPage = data
+      this.fetchGenres({ page: data, limit: this.limit })
     }
   }
 }
