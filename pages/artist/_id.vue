@@ -8,8 +8,8 @@
           <span>{{ artist.likes }}</span>
           <button
             :disabled="!isAuth"
-            @click="like()"
             :class="btnLikeClassName + ' ml-5'"
+            @click="like()"
           >
             <!-- TODO : replace libelle by font awesome or svg -->
             {{ btnLikeLibelle }}
@@ -17,12 +17,14 @@
         </div>
         <p>{{ artist.description }}</p>
         <p>{{ artist.origin }}</p>
-        <p v-if="artist.genre">{{ artist.genre.name }}</p>
+        <p v-if="artist.genre">
+          {{ artist.genre.name }}
+        </p>
       </div>
     </div>
     <div class="my-5">
       <h2>Albums ({{ artist.albums.length }})</h2>
-      <ul class="flex flex-row flew-wrap justify-start items-center" v-if="artist.albums.length > 0">
+      <ul v-if="artist.albums.length > 0" class="flex flex-row flew-wrap justify-start items-center">
         <li v-for="album in artist.albums" :key="album.id" :album="album" class="album flex flex-col justify-center items-center">
           <div class="cover">
             <div class="hover">

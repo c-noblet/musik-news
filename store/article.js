@@ -20,25 +20,26 @@ export const getters = {
 
 export const mutations = {
   ARTICLE (state, payload) {
-    state.article = payload.data
+    console.log('ARTICLE', payload)
+    state.article = payload
   },
   ARTICLES (state, payload) {
-    state.articles = payload.data
+    state.articles = payload
   },
   LASTARTICLES (state, payload) {
-    state.lastArticles = payload.data
+    state.lastArticles = payload
   },
   ARTICLECREATED (state, payload) {
-    state.articleCreated = payload.data
+    state.articleCreated = payload
   },
   ARTICLEDELETED (state, payload) {
-    state.articleDeleted = payload.data
+    state.articleDeleted = payload
   },
   ARTICLEUPDATED (state, payload) {
-    state.articleUpdated = payload.data
+    state.articleUpdated = payload
   },
   COMMENT (state, payload) {
-    state.article.comments.push(payload.data)
+    state.article.comments.push(payload)
   }
 }
 
@@ -58,12 +59,12 @@ export const actions = {
       await commit('LASTARTICLES', response.data)
     })
   },
-  postComment ({ getters, commit }, comment) {
-    commit('COMMENT', comment)
-    this.$axios.put(`/news/${getters.article.id}`, getters.article, {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('musik_news_token')}`
-      }
+  async postComment ({ getters, commit }, data) {
+    await commit('COMMENT', data.comment)
+    this.$axios.patch(`/news/${data.id}`, {
+      comments: getters.article.comments
+    }).then(async (response) => {
+      await commit('ARTICLE', response.data)
     })
   },
   createArticle (context, data) {
@@ -71,7 +72,8 @@ export const actions = {
     this.$axios.post('/news', {
       title: data.title,
       content: data.content,
-      published: date.toLocaleDateString()
+      published: date.toLocaleDateString(),
+      comments: []
     })
       .then(async (response) => {
         await context.commit('ARTICLECREATED', response.data)
