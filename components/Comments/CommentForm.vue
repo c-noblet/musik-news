@@ -31,7 +31,11 @@ export default {
   methods: {
     sendComment (e) {
       e.preventDefault()
-      this.$store.dispatch('article/postComment', this.comment)
+      this.$store.dispatch('article/postComment', {
+        id: this.$route.params.id,
+        comment: this.comment
+      })
+      this.comment = ''
     },
     fetchUserInfo () {
       this.$store.dispatch('auth/getUserInfo')
