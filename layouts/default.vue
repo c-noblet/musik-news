@@ -23,7 +23,7 @@
         <ul class="list-reset lg:flex justify-end flex-1 items-center">
           <li class="mr-3">
             <NuxtLink to="/" class="inline-block py-2 px-4 text-white no-underline">
-              Home
+              Accueil
             </NuxtLink>
           </li>
           <li class="mr-3">
@@ -33,7 +33,7 @@
           </li>
           <li class="mr-3">
             <NuxtLink to="/artists" class="inline-block no-underline py-2 px-4">
-              Artists
+              Artistes
             </NuxtLink>
           </li>
           <li v-if="role == 'admin'" class="mr-3">
@@ -43,10 +43,10 @@
           </li>
           <li class="mr-3">
             <button v-if="isAuth" class="inline-block no-underline py-2 px-4" @click="logout">
-              Logout
+              Déconnexion
             </button>
             <NuxtLink v-else to="/login" class="inline-block no-underline py-2 px-4">
-              Login
+              Connexion
             </NuxtLink>
           </li>
         </ul>
