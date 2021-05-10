@@ -52,7 +52,7 @@
         </ul>
       </div>
     </nav>
-    <main class="container mx-auto">
+    <main class="container w-full">
       <flash-message />
       <Nuxt />
     </main>

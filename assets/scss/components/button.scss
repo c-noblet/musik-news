@@ -65,3 +65,21 @@ a, button {
     height: 20px;
   }
 }
+
+.btn-svg {
+  svg {
+    fill: #9ca3af;
+    height: 24px;
+    width: 24px;
+  }
+  &.active {
+    svg {
+      fill: #f3f4f6;
+    }
+  }
+  &:hover {
+    svg {
+      fill: #f3f4f6;
+    }
+  }
+}

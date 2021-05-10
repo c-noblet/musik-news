@@ -1,21 +1,28 @@
 /* eslint-disable no-debugger, no-console */
 
 <template>
-  <div class="flex flex-row justify-start items-top">
+  <div class="flex flex-row justify-start items-top w-full">
     <aside>
       <div class="flex justify-start">
-        <div class="w-64 h-screen bg-gray-800 mt-8 sm:mt-0">
-          <div class="flex items-center justify-center mt-10">
+        <div class="w-auto md:w-64 h-screen bg-gray-800 sm:mt-0">
+          <div class="hidden md:flex items-center justify-center mt-10">
             Administration
           </div>
 
           <nav class="mt-10">
             <NuxtLink to="/admin/news" :class="isActive('news')">
-              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19 11H5M19 11C20.1046 11 21 11.8954 21 13V19C21 20.1046 20.1046 21 19 21H5C3.89543 21 3 20.1046 3 19V13C3 11.8954 3.89543 11 5 11M19 11V9C19 7.89543 18.1046 7 17 7M5 11V9C5 7.89543 5.89543 7 7 7M7 7V5C7 3.89543 7.89543 3 9 3H15C16.1046 3 17 3.89543 17 5V7M7 7H17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <g data-name="Layer 2">
+                  <g data-name="message-square">
+                    <rect width="24" height="24" opacity="0" />
+                    <circle cx="12" cy="11" r="1" />
+                    <circle cx="16" cy="11" r="1" />
+                    <circle cx="8" cy="11" r="1" />
+                    <path d="M19 3H5a3 3 0 0 0-3 3v15a1 1 0 0 0 .51.87A1 1 0 0 0 3 22a1 1 0 0 0 .51-.14L8 19.14a1 1 0 0 1 .55-.14H19a3 3 0 0 0 3-3V6a3 3 0 0 0-3-3zm1 13a1 1 0 0 1-1 1H8.55a3 3 0 0 0-1.55.43l-3 1.8V6a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1z" />
+                  </g>
+                </g>
               </svg>
-
-              <span class="mx-4 font-medium">News</span>
+              <span class="mx-4 font-medium hidden md:inline-block">News</span>
             </NuxtLink>
 
             <NuxtLink to="/admin/artists" :class="isActive('artists')">
@@ -24,32 +31,69 @@
                 <path d="M12 14C8.13401 14 5 17.134 5 21H19C19 17.134 15.866 14 12 14Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
               </svg>
 
-              <span class="mx-4 font-medium">Artists</span>
+              <span class="mx-4 font-medium hidden md:inline-block">Artists</span>
             </NuxtLink>
 
             <NuxtLink to="/admin/concerts" :class="isActive('concerts')">
-              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M15 5V7M15 11V13M15 17V19M5 5C3.89543 5 3 5.89543 3 7V10C4.10457 10 5 10.8954 5 12C5 13.1046 4.10457 14 3 14V17C3 18.1046 3.89543 19 5 19H19C20.1046 19 21 18.1046 21 17V14C19.8954 14 19 13.1046 19 12C19 10.8954 19.8954 10 21 10V7C21 5.89543 20.1046 5 19 5H5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
-
-              <span class="mx-4 font-medium">Concerts</span>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g data-name="Layer 2"><g data-name="speaker"><rect width="24" height="24" transform="rotate(90 12 12)" opacity="0"/><path d="M12 11a3 3 0 1 0-3-3 3 3 0 0 0 3 3zm0-4a1 1 0 1 1-1 1 1 1 0 0 1 1-1z"/><path d="M12 12a3.5 3.5 0 1 0 3.5 3.5A3.5 3.5 0 0 0 12 12zm0 5a1.5 1.5 0 1 1 1.5-1.5A1.5 1.5 0 0 1 12 17z"/><path d="M17 2H7a3 3 0 0 0-3 3v14a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V5a3 3 0 0 0-3-3zm1 17a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1z"/></g></g></svg>
+              <span class="mx-4 font-medium hidden md:inline-block">Concerts</span>
             </NuxtLink>
 
             <NuxtLink to="/admin/albums" :class="isActive('albums')">
-              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M10.3246 4.31731C10.751 2.5609 13.249 2.5609 13.6754 4.31731C13.9508 5.45193 15.2507 5.99038 16.2478 5.38285C17.7913 4.44239 19.5576 6.2087 18.6172 7.75218C18.0096 8.74925 18.5481 10.0492 19.6827 10.3246C21.4391 10.751 21.4391 13.249 19.6827 13.6754C18.5481 13.9508 18.0096 15.2507 18.6172 16.2478C19.5576 17.7913 17.7913 19.5576 16.2478 18.6172C15.2507 18.0096 13.9508 18.5481 13.6754 19.6827C13.249 21.4391 10.751 21.4391 10.3246 19.6827C10.0492 18.5481 8.74926 18.0096 7.75219 18.6172C6.2087 19.5576 4.44239 17.7913 5.38285 16.2478C5.99038 15.2507 5.45193 13.9508 4.31731 13.6754C2.5609 13.249 2.5609 10.751 4.31731 10.3246C5.45193 10.0492 5.99037 8.74926 5.38285 7.75218C4.44239 6.2087 6.2087 4.44239 7.75219 5.38285C8.74926 5.99037 10.0492 5.45193 10.3246 4.31731Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                <path d="M15 12C15 13.6569 13.6569 15 12 15C10.3431 15 9 13.6569 9 12C9 10.3431 10.3431 9 12 9C13.6569 9 15 10.3431 15 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                viewBox="0 0 389.12 389.12"
+              >
+                <g>
+                  <g>
+                    <g>
+                      <path
+                        d="M194.56,0C87.281,0,0,87.281,0,194.56s87.281,194.56,194.56,194.56s194.56-87.281,194.56-194.56S301.839,0,194.56,0z
+                        M194.56,375.467c-99.753,0-180.907-81.154-180.907-180.907S94.807,13.653,194.56,13.653S375.467,94.807,375.467,194.56
+                        S294.313,375.467,194.56,375.467z"
+                      />
+                      <path
+                        d="M194.56,150.187c-24.467,0-44.373,19.907-44.373,44.373c0,24.467,19.907,44.373,44.373,44.373
+                        c24.467,0,44.373-19.907,44.373-44.373C238.933,170.093,219.027,150.187,194.56,150.187z M194.56,225.28
+                        c-16.94,0-30.72-13.78-30.72-30.72s13.78-30.72,30.72-30.72s30.72,13.78,30.72,30.72S211.5,225.28,194.56,225.28z"
+                      />
+                    </g>
+                  </g>
+                </g>
+                <g>
+                  <g>
+                    <g>
+                      <path
+                        d="M194.56,122.88c-39.526,0-71.68,32.154-71.68,71.68s32.154,71.68,71.68,71.68s71.68-32.154,71.68-71.68
+                        S234.086,122.88,194.56,122.88z M194.56,252.587c-31.993,0-58.027-26.034-58.027-58.027s26.034-58.027,58.027-58.027
+                        s58.027,26.034,58.027,58.027S226.553,252.587,194.56,252.587z"
+                      />
+                      <path
+                        d="M194.56,150.187c-24.467,0-44.373,19.907-44.373,44.373c0,24.467,19.907,44.373,44.373,44.373
+                        c24.467,0,44.373-19.907,44.373-44.373C238.933,170.093,219.027,150.187,194.56,150.187z M194.56,225.28
+                        c-16.94,0-30.72-13.78-30.72-30.72s13.78-30.72,30.72-30.72s30.72,13.78,30.72,30.72S211.5,225.28,194.56,225.28z"
+                      />
+                    </g>
+                  </g>
+                </g>
+                <g>
+                  <g>
+                    <path
+                      d="M120.305,58.508c-1.932-3.241-6.12-4.308-9.359-2.374C76.559,76.607,51.494,108.947,40.366,147.2
+                      c-1.053,3.62,1.027,7.407,4.647,8.46c0.633,0.186,1.28,0.273,1.906,0.273c2.961,0,5.687-1.934,6.55-4.919
+                      c10.161-34.92,33.055-64.454,64.461-83.147C121.172,65.94,122.231,61.747,120.305,58.508z"
+                    />
+                  </g>
+                </g>
               </svg>
 
-              <span class="mx-4 font-medium">Albums</span>
+              <span class="mx-4 font-medium hidden md:inline-block">Albums</span>
             </NuxtLink>
 
             <NuxtLink to="/admin/genres" :class="isActive('genres')">
-              <svg class="h-5 w-5" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M18 10C18 14.4183 14.4183 18 10 18C5.58172 18 2 14.4183 2 10C2 5.58172 5.58172 2 10 2C14.4183 2 18 5.58172 18 10ZM10 7C9.63113 7 9.3076 7.19922 9.13318 7.50073C8.85664 7.97879 8.24491 8.14215 7.76685 7.86561C7.28879 7.58906 7.12543 6.97733 7.40197 6.49927C7.91918 5.60518 8.88833 5 10 5C11.6569 5 13 6.34315 13 8C13 9.30622 12.1652 10.4175 11 10.8293V11C11 11.5523 10.5523 12 10 12C9.44773 12 9.00001 11.5523 9.00001 11V10C9.00001 9.44772 9.44773 9 10 9C10.5523 9 11 8.55228 11 8C11 7.44772 10.5523 7 10 7ZM10 15C10.5523 15 11 14.5523 11 14C11 13.4477 10.5523 13 10 13C9.44772 13 9 13.4477 9 14C9 14.5523 9.44772 15 10 15Z" fill="currentColor" />
-              </svg>
-
-              <span class="mx-4 font-medium">Genres</span>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g data-name="Layer 2"><g data-name="music"><rect width="24" height="24" opacity="0" /><path d="M19 15V4a1 1 0 0 0-.38-.78 1 1 0 0 0-.84-.2l-9 2A1 1 0 0 0 8 6v8.34a3.49 3.49 0 1 0 2 3.18 4.36 4.36 0 0 0 0-.52V6.8l7-1.55v7.09a3.49 3.49 0 1 0 2 3.17 4.57 4.57 0 0 0 0-.51zM6.54 19A1.49 1.49 0 1 1 8 17.21a1.53 1.53 0 0 1 0 .3A1.49 1.49 0 0 1 6.54 19zm9-2A1.5 1.5 0 1 1 17 15.21a1.53 1.53 0 0 1 0 .3A1.5 1.5 0 0 1 15.51 17z" /></g></g></svg>
+              <span class="mx-4 font-medium hidden md:inline-block">Genres</span>
             </NuxtLink>
           </nav>
         </div>
@@ -94,9 +138,9 @@ export default {
   methods: {
     isActive (name) {
       if (this.$route.path.includes(name)) {
-        return 'flex items-center mt-5 py-2 px-8 bg-gray-700 text-gray-100 border-r-4 border-gray-100'
+        return 'flex items-center mt-5 py-2 px-8 bg-gray-700 text-gray-100 border-r-4 border-gray-100 btn-svg active'
       } else {
-        return 'flex items-center mt-5 py-2 px-8 text-gray-400 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100'
+        return 'flex items-center mt-5 py-2 px-8 text-gray-400 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100 btn-svg'
       }
     }
   }
