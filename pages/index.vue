@@ -31,7 +31,6 @@ export default {
   },
   created () {
     this.unsubscribe = this.$store.subscribe((mutations) => {
-      console.log(mutations)
       if (mutations.type === 'article/LASTARTICLES') {
         this.articles = mutations.payload
       } else if (mutations.type === 'album/LASTALBUMS') {

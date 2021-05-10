@@ -4,7 +4,7 @@
       <span class="pill">SUCCÈS</span>
       <div class="flex flex-row justify-between items-center ml-4 w-full">
         <span class="font-semibold">{{ message }}</span>
-        <button @click="removeFlashMessage(message, 'success')" class="mr-5">
+        <button class="mr-5" @click="removeFlashMessage(message, 'success')">
           x
         </button>
       </div>
@@ -13,7 +13,7 @@
       <div class="flex flex-row justify-between items-center ml-4 w-full">
         <span class="pill">ERREUR</span>
         <span class="font-semibold">{{ message }}</span>
-        <button @click="removeFlashMessage(message, 'error')">
+        <button class="mr-5" @click="removeFlashMessage(message, 'error')">
           x
         </button>
       </div>
@@ -22,7 +22,7 @@
       <div class="flex flex-row justify-between items-center ml-4 w-full">
         <span class="pill">ALERTE</span>
         <span class="font-semibold">{{ message }}</span>
-        <button @click="removeFlashMessage(message, 'alert')">
+        <button class="mr-5" @click="removeFlashMessage(message, 'alert')">
           x
         </button>
       </div>
@@ -31,7 +31,7 @@
       <div class="flex flex-row justify-between items-center ml-4 w-full">
         <span class="pill">INFO</span>
         <span class="font-semibold">{{ message }}</span>
-        <button @click="removeFlashMessage(message, 'info')">
+        <button class="mr-5" @click="removeFlashMessage(message, 'info')">
           x
         </button>
       </div>
@@ -65,6 +65,9 @@ export default {
       }
     })
   },
+  beforeDestroy () {
+    this.unsubscribe()
+  },
   methods: {
     clearFlashMessage (message, type) {
       setTimeout(() => {
@@ -82,9 +85,6 @@ export default {
         this.infoMessages.splice(this.infoMessages.indexOf(message), 1)
       }
     }
-  },
-  beforeDestroy () {
-    this.unsubscribe()
   }
 }
 </script>
