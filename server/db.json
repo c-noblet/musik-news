@@ -56,8 +56,8 @@
       "role": "admin",
       "id": 9,
       "likes": [
-        "3",
-        "4"
+        "4",
+        "3"
       ]
     },
     {
@@ -181,6 +181,34 @@
       "tracks": "14",
       "artistId": 4,
       "id": 3
+    },
+    {
+      "name": "Ipséité",
+      "released": "2017",
+      "tracks": "14",
+      "artistId": 3,
+      "id": 4
+    },
+    {
+      "name": "Lithopédion",
+      "released": "2018",
+      "tracks": "18",
+      "artistId": 3,
+      "id": 5
+    },
+    {
+      "name": "Batterie faible",
+      "released": "2016",
+      "tracks": "8",
+      "artistId": 3,
+      "id": 6
+    },
+    {
+      "name": "QALF infinity",
+      "released": "2021",
+      "tracks": "11",
+      "artistId": 3,
+      "id": 7
     }
   ],
   "concerts": [

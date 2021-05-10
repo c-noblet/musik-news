@@ -1,31 +1,43 @@
 <template>
-  <div>
-    <div class="flex flex-col md:flex-row">
-      <img :src="artist.avatar" alt="Avatar de l'artiste/groupe" class="avatar-artist">
-      <div class="flex flex-col md:ml-5">
-        <h1>{{ artist.name }}</h1>
-        <div class="flex flex-row">
-          <span>{{ artist.likes }}</span>
-          <button
-            :disabled="!isAuth"
-            :class="btnLikeClassName + ' ml-5'"
-            @click="like()"
-          >
-            <!-- TODO : replace libelle by font awesome or svg -->
-            {{ btnLikeLibelle }}
-          </button>
+  <div id="artist-page">
+    <div>
+      <div class="flex flex-col justify-center items-center small-container">
+        <img :src="artist.avatar" alt="Avatar de l'artiste/groupe" class="avatar-artist">
+        <h1 class="text-center my-5 uppercase">
+          {{ artist.name }}
+        </h1>
+        <div class="flex flex-col justify-center items-center">
+          <div class="flex flex-row artist-info mb-3">
+            <div>
+              <p v-if="artist.genre" class="uppercase">
+                {{ artist.genre.name }}
+              </p>
+            </div>
+            <div>
+              <p class="uppercase">
+                {{ artist.origin }}
+              </p>
+            </div>
+            <div class="flex flex-row">
+              <button
+                :disabled="!isAuth"
+                class="mr-3"
+                @click="like()"
+              >
+                <img src="~/assets/img/svg/like.svg" height="20" width="20" :class="btnLikeClassName">
+              </button>
+              <span>{{ artist.likes }}</span>
+            </div>
+          </div>
+          <p class="text-center">
+            {{ artist.description }}
+          </p>
         </div>
-        <p>{{ artist.description }}</p>
-        <p>{{ artist.origin }}</p>
-        <p v-if="artist.genre">
-          {{ artist.genre.name }}
-        </p>
       </div>
     </div>
     <div class="my-5">
-      <h2>Albums ({{ artist.albums.length }})</h2>
-      <ul v-if="artist.albums.length > 0" class="flex flex-row flew-wrap justify-start items-center">
-        <li v-for="album in artist.albums" :key="album.id" :album="album" class="album flex flex-col justify-center items-center">
+      <ul v-if="artist.albums.length > 0" class="flex flex-row flew-nowrap justify-start items-center overflow-x-auto album-container">
+        <li v-for="album in sortedAlbums" :key="album.id" :album="album" class="album flex flex-col justify-center items-center">
           <div class="cover">
             <div class="hover">
               <p>{{ album.released }}</p>
@@ -39,9 +51,8 @@
     <div>
       <h2>Concerts ({{ artist.concerts.length }})</h2>
       <ul v-if="artist.concerts.length > 0">
-        <li v-for="concert in concerts" :key="concert.id" :concert="concert">
-          {{ concert.name }} <br>
-          Date : {{ concert.date }}
+        <li v-for="concert in artist.concerts" :key="concert.id" :concert="concert">
+          {{ concert.name }} - {{ concert.date }}
         </li>
       </ul>
     </div>
@@ -66,26 +77,29 @@ export default {
           name: null
         }
       },
+      sortedAlbums: [],
       isAuth: false,
       user: null,
-      btnLikeClassName: 'btn-like-artist',
-      btnLikeLibelle: 'Like',
+      btnLikeClassName: '',
       alreadyLiked: false
     }
   },
   watch: {
     user () {
-      this.btnLikeClassName = 'btn-like-artist'
-      this.btnLikeLibelle = 'Like'
+      this.btnLikeClassName = ''
       this.alreadyLiked = false
       if (this.user) {
         if (this.user.likes) {
           if (this.user.likes.includes(this.$route.params.id)) {
-            this.btnLikeClassName = 'btn-like-artist unlike'
-            this.btnLikeLibelle = 'Unlike'
+            this.btnLikeClassName = 'unlike'
             this.alreadyLiked = true
           }
         }
+      }
+    },
+    artist () {
+      if (this.artist.albums) {
+        this.sortedAlbums = this.artist.albums.sort((a, b) => { return b.date - a.date })
       }
     }
   },
@@ -122,12 +136,10 @@ export default {
       this.$store.dispatch('auth/likeArtist', { idArtist: this.$route.params.id, remove: this.alreadyLiked })
         .then(() => {
           if (this.alreadyLiked) {
-            this.btnLikeClassName = 'btn-like-artist'
-            this.btnLikeLibelle = 'Like'
+            this.btnLikeClassName = ''
             this.alreadyLiked = false
           } else {
-            this.btnLikeClassName = 'btn-like-artist unlike'
-            this.btnLikeLibelle = 'Unlike'
+            this.btnLikeClassName = 'unlike'
             this.alreadyLiked = true
           }
         })

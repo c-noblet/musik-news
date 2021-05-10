@@ -7,6 +7,7 @@
 @import './components/button.scss';
 @import './components/form.scss';
 @import './components/flashMessage.scss';
+@import './pages/artist-id.scss';
 
 
 .artist-card {
@@ -37,46 +38,6 @@
     }
     h2 {
       color: $primary;
-    }
-  }
-}
-
-img.avatar-artist {
-  max-width: 20rem;
-}
-
-.album {
-  width: 10rem;
-  height: 15rem;
-  margin-right: 1rem;
-  :first-child {
-    margin-right: 0rem;
-  }
-  -webkit-transition: all 0.5s;
-  -moz-transition: all 0.5s;
-  -ms-transition: all 0.5s;
-  -o-transition: all 0.5s;
-  transition: all 0.5s;
-  .cover {
-    width: 10rem;
-    height: 10rem;
-    background-color: $white;
-    border-radius: 0.4rem;
-    position: relative;
-    .hover {
-      display: none;
-    }    
-  }
-  &:hover {
-    opacity: 0.9;
-    .hover {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      color: $black;
     }
   }
 }
