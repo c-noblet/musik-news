@@ -1,8 +1,15 @@
 /* Form */
 input, textarea, select {
   border: 1px solid $grey;
-  border-radius: 0.1rem;
   color: $black;
+}
+
+input, select {
+  border-radius: 2rem !important;
+}
+
+textarea {
+  border-radius: 1rem !important;
 }
 
 label {

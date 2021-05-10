@@ -1,28 +1,40 @@
 <template>
   <div>
-    <div v-for="message in successMessages" :key="message" class="flash-message success">
-      {{ message }}
-      <button @click="removeFlashMessage(message, 'success')">
-        x
-      </button>
+    <div v-for="message in successMessages" :key="message" class="flash-message success flex flex-row justify-start items-center w-full">
+      <span class="pill">SUCCÈS</span>
+      <div class="flex flex-row justify-between items-center ml-4 w-full">
+        <span class="font-semibold">{{ message }}</span>
+        <button @click="removeFlashMessage(message, 'success')" class="mr-5">
+          x
+        </button>
+      </div>
     </div>
-    <div v-for="message in errorMessages" :key="message" class="flash-message error">
-      {{ message }}
-      <button @click="removeFlashMessage(message, 'error')">
-        x
-      </button>
+    <div v-for="message in errorMessages" :key="message" class="flash-message error flex flex-row justify-start items-center w-full">
+      <div class="flex flex-row justify-between items-center ml-4 w-full">
+        <span class="pill">ERREUR</span>
+        <span class="font-semibold">{{ message }}</span>
+        <button @click="removeFlashMessage(message, 'error')">
+          x
+        </button>
+      </div>
     </div>
-    <div v-for="message in alertMessages" :key="message" class="flash-message alert">
-      {{ message }}
-      <button @click="removeFlashMessage(message, 'alert')">
-        x
-      </button>
+    <div v-for="message in alertMessages" :key="message" class="flash-message alert flex flex-row justify-start items-center w-full">
+      <div class="flex flex-row justify-between items-center ml-4 w-full">
+        <span class="pill">ALERTE</span>
+        <span class="font-semibold">{{ message }}</span>
+        <button @click="removeFlashMessage(message, 'alert')">
+          x
+        </button>
+      </div>
     </div>
-    <div v-for="message in infoMessages" :key="message" class="flash-message info">
-      {{ message }}
-      <button @click="removeFlashMessage(message, 'info')">
-        x
-      </button>
+    <div v-for="message in infoMessages" :key="message" class="flash-message info flex flex-row justify-start items-center w-full">
+      <div class="flex flex-row justify-between items-center ml-4 w-full">
+        <span class="pill">INFO</span>
+        <span class="font-semibold">{{ message }}</span>
+        <button @click="removeFlashMessage(message, 'info')">
+          x
+        </button>
+      </div>
     </div>
   </div>
 </template>

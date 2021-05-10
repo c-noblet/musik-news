@@ -1,0 +1,47 @@
+.flash-message {
+  background-color: $primary-light;
+  color: $white;
+  padding: 0.8rem 0.8rem 0.8rem 0.8rem;
+  border-radius: 2rem;
+  .pill {
+    opacity: 1;
+    background-color: $primary;
+    color: $white;
+    padding:  0rem 0.5rem;
+    border-radius: 2rem;
+    font-weight: 500;
+  }
+  button {
+    opacity: 1;
+    color: $white;
+    font-weight: bold;
+  }
+
+  &.success {
+    background-color: $primary-light;
+    .pill {
+      background-color: $primary;
+    }
+  }
+
+  &.error {
+    background-color: $danger-light;
+    .pill {
+      background-color: $danger;
+    }
+  }
+
+  &.alert {
+    background-color: $alert-light;
+    .pill {
+      background-color: $alert;
+    }
+  }
+
+  &.info {
+    background-color: $secondary-light;
+    .pill {
+      background-color: $secondary;
+    }
+  }
+}
