@@ -1,27 +1,20 @@
 .artist-card {
   margin: 1rem;
+  * {
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+  }
   img {
-    width: 15rem;
-    height: 15rem;
+    max-width: 14rem;
+    max-height: 14rem;
     margin-bottom: 1rem;
     border-radius: 4px;
-    -webkit-transition: all 0.5s;
-    -moz-transition: all 0.5s;
-    -ms-transition: all 0.5s;
-    -o-transition: all 0.5s;
-    transition: all 0.5s;
-  }
-  h2 {
-    color: $white;
-    font-weight: bold;
-    -webkit-transition: all 0.5s;
-    -moz-transition: all 0.5s;
-    -ms-transition: all 0.5s;
-    -o-transition: all 0.5s;
-    transition: all 0.5s;
   }
   &:hover {
-    img{
+    img {
       opacity: 0.5;
     }
     h2 {
@@ -31,9 +24,9 @@
 }
 
 .album {
-  width: 15rem;
-  height: 20rem;
-  margin-left: 1rem;
+  width: 12rem;
+  height: 17rem;
+  margin-left: 3rem;
   flex: 0 0 auto;
   &:first-child {
     margin-left: 0rem;
@@ -47,13 +40,12 @@
   -o-transition: all 0.5s;
   transition: all 0.5s;
   .cover {
-    width: 15rem;
-    height: 15rem;
-    // background-color: $white;
+    width: 12rem;
+    height: 12rem;
     border-radius: 0.4rem;
     position: relative;
     background-image: url('https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fcdn.onlinewebfonts.com%2Fsvg%2Fimg_496601.png&f=1&nofb=1');
-    background-size: 15rem 15rem;
+    background-size: 12rem 12rem;
     margin-bottom: 1rem;
     .hover {
       display: none;
