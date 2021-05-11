@@ -1,5 +1,6 @@
 <template>
-  <div class="flex flex-col justify-center items-center mt-10">
+  <div class="flex flex-col justify-center items-center">
+    <h1 class="text-center text-4xl font-bold pt-1 pb-2 px-8 border-t-4 border-b-4 border-gray-100 mb-20">Artistes</h1>
     <form
       class="p-6 mb-10 w-full md:w-3/5"
       @submit="submitForm($event)"

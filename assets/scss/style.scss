@@ -7,37 +7,5 @@
 @import './components/button.scss';
 @import './components/form.scss';
 @import './components/flashMessage.scss';
+@import './components/artistCard.scss';
 @import './pages/artist-id.scss';
-
-
-.artist-card {
-  margin: 1rem;
-  img {
-    width: 15rem;
-    height: 15rem;
-    margin-bottom: 1rem;
-    border-radius: 4px;
-    -webkit-transition: all 0.5s;
-    -moz-transition: all 0.5s;
-    -ms-transition: all 0.5s;
-    -o-transition: all 0.5s;
-    transition: all 0.5s;
-  }
-  h2 {
-    color: $white;
-    font-weight: bold;
-    -webkit-transition: all 0.5s;
-    -moz-transition: all 0.5s;
-    -ms-transition: all 0.5s;
-    -o-transition: all 0.5s;
-    transition: all 0.5s;
-  }
-  &:hover {
-    img{
-      opacity: 0.5;
-    }
-    h2 {
-      color: $primary;
-    }
-  }
-}

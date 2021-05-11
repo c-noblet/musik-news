@@ -36,7 +36,7 @@
       </div>
     </div>
     <div class="my-5">
-      <ul v-if="artist.albums.length > 0" class="flex flex-row flew-nowrap justify-start items-center overflow-x-auto album-container">
+      <ul v-if="artist.albums.length > 0" class="flex flex-row flex-wrap justify-center items-center album-container">
         <li v-for="album in sortedAlbums" :key="album.id" :album="album" class="album flex flex-col justify-center items-center">
           <div class="cover">
             <div class="hover">

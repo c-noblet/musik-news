@@ -1,8 +1,10 @@
 <template>
   <div class="container mx-auto">
-    <h1>News</h1>
-    <ul>
-      <li v-for="article in articles" :key="article.id">
+    <div class="flex flex-col justify-center items-center mb-20">
+      <h1 class="text-center text-4xl font-bold pt-1 pb-2 px-8 border-t-4 border-b-4 border-gray-100">News</h1>
+    </div>
+   <ul class="flex flex-col md:flex-row mb-5">
+      <li v-for="article in articles" :key="article.id" class="m-5 w-3/6">
         <Article :data="article" />
       </li>
     </ul>
