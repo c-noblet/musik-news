@@ -1,20 +1,16 @@
 # musik
 
-## Build Setup
+## Build Ap
 
 ```bash
 # install dependencies
-$ yarn install
+$ npm install
 
-# serve with hot reload at localhost:3000
-$ yarn dev
+# launch json-server at localhost:3000
+$ npm run serve
 
-# build for production and launch server
-$ yarn build
-$ yarn start
-
-# generate static project
-$ yarn generate
+# Launch nuxt app at localhost:8000
+$ npm run dev
 ```
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
