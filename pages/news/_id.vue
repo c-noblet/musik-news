@@ -1,9 +1,15 @@
 <template>
   <div v-if="article !== null" class="container">
     <article>
-      <h1>{{ article.title }}</h1>
-      <span>{{ article.published }}</span>
-      <p>{{ article.content }}</p>
+      <div class="flex justify-between items-end">
+        <h1 class="text-5xl">
+          {{ article.title }}
+        </h1>
+        <span>{{ article.published }}</span>
+      </div>
+      <p class="mt-10 mb-20">
+        {{ article.content }}
+      </p>
     </article>
     <Comments :comments="article.comments" />
   </div>

@@ -6,7 +6,7 @@
       </h1>
     </div>
     <form
-      class="grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-10 mb-5"
+      class="grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-10 mb-10"
       @submit="submitForm($event)"
     >
       <input

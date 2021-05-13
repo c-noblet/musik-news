@@ -1,7 +1,12 @@
 <template>
-  <form v-if="isAuth" @submit="sendComment">
-    <textarea v-model="comment" placeholder="Commentaire" cols="30" rows="10" />
-    <button>Envoyer</button>
+  <form v-if="isAuth" class="mb-10" @submit="sendComment">
+    <h3 class="mb-2">
+      Saisir un commentaire
+    </h3>
+    <textarea v-model="comment" placeholder="Commentaire" cols="30" rows="10" class="mb-3 w-full" />
+    <button class="btn btn-primary">
+      Envoyer
+    </button>
   </form>
 </template>
 <script>
