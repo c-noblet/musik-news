@@ -66,7 +66,7 @@ export const actions = {
     })
   },
   fetchLastArticles ({ getters, commit }) {
-    this.$axios.get('/news?_sort=published&_order=asc&_limit=5').then(async (response) => {
+    this.$axios.get('/news?_sort=published&_order=asc&_limit=6').then(async (response) => {
       await commit('LASTARTICLES', response.data)
     })
   },

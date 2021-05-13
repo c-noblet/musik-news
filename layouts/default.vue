@@ -4,7 +4,7 @@
     class="bg-gray-700"
   >
     <Navbar />
-    <main class="container w-full">
+    <main class="container mx-auto">
       <FlashMessage />
       <Nuxt />
     </main>

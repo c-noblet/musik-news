@@ -60,7 +60,7 @@ export const actions = {
       })
   },
   getLastAlbums (context) {
-    this.$axios.get('/albums?_expand=artist&_sort=released&_order=asc&_limit=5')
+    this.$axios.get('/albums?_expand=artist&_sort=released&_order=asc&_limit=6')
       .then(async (response) => {
         await context.commit('LASTALBUMS', response.data)
       })

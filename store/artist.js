@@ -64,7 +64,7 @@ export const actions = {
       })
   },
   getTopArtists (context, data) {
-    this.$axios.get('/artists?age}&_limit=5&_sort=likes&_order=desc')
+    this.$axios.get('/artists?age}&_limit=6&_sort=likes&_order=desc')
       .then(async (response) => {
         await context.commit('ARTISTS', response.data)
       })

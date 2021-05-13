@@ -1,64 +1,49 @@
 <template>
-  <div class="flex flex-col justify-center items-center">
-    <h1 class="text-center text-4xl font-bold pt-1 pb-2 px-8 border-t-4 border-b-4 border-gray-100 mb-20">Artistes</h1>
+  <div>
+    <div class="mx-auto w-80 mb-20">
+      <h1 class="text-center text-4xl font-bold pt-1 pb-2 px-8 border-t-4 border-b-4 border-gray-100">
+        Artistes
+      </h1>
+    </div>
     <form
-      class="p-6 mb-10 w-full md:w-3/5"
+      class="grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-10 mb-5"
       @submit="submitForm($event)"
     >
-      <div class="flex flex-row justify-center items-center">
-        <div class="mb-4 w-full md:w-1/3">
-          <label class="block mb-2" for="name">
-            Nom
-          </label>
-          <input
-            id="name"
-            v-model="searchArtistObject.name"
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            type="text"
-            placeholder="Nom"
-          >
-        </div>
-        <div class="mb-4 w-full md:w-1/3 md:mx-4">
-          <label class="block mb-2" for="origin">
-            Origine
-          </label>
-          <input
-            id="origin"
-            v-model="searchArtistObject.origin"
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            type="text"
-            placeholder="Origine"
-          >
-        </div>
-        <div class="inline-block relative w-full md:w-1/3 mb-4">
-          <label class="block mb-2">
-            Genre
-          </label>
-          <select
-            id="genreId"
-            v-model="searchArtistObject.genreId"
-            class="block w-full bg-white border px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
-          >
-            <option value="" selected>
-              -- Genre --
-            </option>
-            <option
-              v-for="genre in genres"
-              :key="genre.id"
-              :value="genre.id"
-            >
-              {{ genre.name }}
-            </option>
-          </select>
-        </div>
-      </div>
-      <div class="flex items-center justify-center">
-        <button class="btn btn-primary" type="submit">
-          Rechercher
-        </button>
-      </div>
+      <input
+        id="name"
+        v-model="searchArtistObject.name"
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        type="text"
+        placeholder="Nom"
+      >
+      <input
+        id="origin"
+        v-model="searchArtistObject.origin"
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        type="text"
+        placeholder="Origine"
+      >
+      <select
+        id="genreId"
+        v-model="searchArtistObject.genreId"
+        class="block w-full bg-white border px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+      >
+        <option value="" selected>
+          -- Genre --
+        </option>
+        <option
+          v-for="genre in genres"
+          :key="genre.id"
+          :value="genre.id"
+        >
+          {{ genre.name }}
+        </option>
+      </select>
+      <button class="btn btn-primary" type="submit">
+        Rechercher
+      </button>
     </form>
-    <div v-if="nbArtists != 0" class="flex flex-row flex-wrap justify-around items-center">
+    <div v-if="nbArtists != 0" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2 lg:gap-10">
       <artist-card v-for="artist in artists" :key="artist.id" :artist="artist" />
     </div>
     <div v-else class="flex flex-row flex-wrap justify-around items-center">
