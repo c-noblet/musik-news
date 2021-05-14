@@ -52,9 +52,47 @@
 <script>
 export default {
   name: 'Navbar',
+  data () {
+    return {
+      isAuth: null,
+      role: null,
+      user: null
+    }
+  },
+  created () {
+    this.isAuth = this.$store.getters['auth/getIsAuth']
+    this.role = this.$store.getters['auth/getRole']
+    this.user = this.$store.getters['auth/getUser']
+
+    this.unsubscribe = this.$store.subscribe((mutations) => {
+      if (mutations.type === 'auth/ISAUTH') {
+        this.isAuth = mutations.payload
+      } else if (mutations.type === 'auth/ROLE') {
+        this.role = mutations.payload
+      } else if (mutations.type === 'auth/USER') {
+        this.user = mutations.payload
+      }
+    })
+  },
+  mounted () {
+    this.fetchUserInfo()
+  },
+  beforeDestroy () {
+    this.unsubscribe()
+  },
   methods: {
     toggleMenu () {
       document.querySelector('#nav-content').classList.toggle('hidden')
+    },
+    fetchUserInfo () {
+      this.$store.dispatch('auth/getUserInfo')
+    },
+    logout (e) {
+      this.$store.dispatch('auth/logout')
+        .then(() => {
+          this.$store.dispatch('flashMessage/addSuccessMessage', 'Déconnexion réussie !')
+          this.$router.push('/login')
+        })
     }
   }
 }
