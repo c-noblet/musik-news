@@ -51,6 +51,11 @@
 </template>
 <script>
 export default {
-  name: 'Navbar'
+  name: 'Navbar',
+  methods: {
+    toggleMenu () {
+      document.querySelector('#nav-content').classList.toggle('hidden')
+    }
+  }
 }
 </script>
