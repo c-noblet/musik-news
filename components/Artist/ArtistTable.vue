@@ -1,6 +1,6 @@
 <template>
   <div>
-    <table class="rounded-t-lg m-5 w-5/6 mx-auto bg-gray-200 text-gray-800">
+    <table class="rounded-t-lg w-full bg-gray-200 text-gray-800">
       <thead>
         <tr class="text-left border-b border-gray-300">
           <th class="px-4 py-3">
