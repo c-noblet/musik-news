@@ -42,6 +42,7 @@
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center center;
+  transition: all ease-in-out 0.2s;
 
   a {
     position: absolute;
@@ -75,6 +76,11 @@
   &:hover {
     cursor: pointer;
     opacity: 0.9;
+    transform: rotate(90deg);
+
+    & a {
+      transform: translateX(-50%) rotate(-90deg);
+    }
 
     & a > p {
       display: none;
