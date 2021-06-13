@@ -83,7 +83,7 @@ export default {
     },
     changePage (data) {
       this.currentPage = data
-      this.fetchGenres({ page: data, limit: this.limit })
+      this.fetchArticles({ page: data, limit: this.limit })
     }
   }
 }
