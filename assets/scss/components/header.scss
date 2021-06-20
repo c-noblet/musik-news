@@ -1,0 +1,12 @@
+nav#header {
+  height: 4rem;
+  a, button {
+    color: $white;
+    &.nuxt-link-exact-active {
+      color: $primary;
+      &.no-nuxt-link-style {
+        color: $white;
+      }
+    }
+  }
+}

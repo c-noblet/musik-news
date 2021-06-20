@@ -1,0 +1,98 @@
+/* Button */
+a, button {
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.btn {
+  padding: 0.3rem 1rem;
+  border-radius: 2rem;
+  background-color: $black;
+  border: 0.2rem solid $black;
+  color: #fff;
+  font-weight: bold;
+
+  &:hover {
+    background-color: #fff;
+    color: $black;
+  }
+
+  &.btn-primary {
+    background-color: $primary;
+    border-color: $primary;
+    color: $white;
+
+    &:hover {
+      color: $primary;
+      background-color: $white;
+    }
+  }
+}
+
+.btn-pagination {
+  padding: 0.2rem 0.6rem;
+  border-radius: 0.4rem;
+  background-color: none;
+  color: $white;
+
+  span {
+    border-bottom: 1px solid transparent;
+  }
+
+  &.active {
+    background-color: $primary;
+    color: $white;
+
+    &:hover {
+      span {
+        border-color: $white;
+      }
+
+      color: $white;
+    }
+  }
+
+  &:hover {
+    span {
+      border-color: $primary;
+    }
+
+    color: $primary;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.btn-action {
+  color: $black;
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.btn-svg {
+  svg {
+    fill: #9ca3af;
+    height: 24px;
+    min-width: 24px;
+  }
+
+  &.active {
+    svg {
+      fill: #f3f4f6;
+    }
+  }
+
+  &:hover {
+    svg {
+      fill: #f3f4f6;
+    }
+  }
+}

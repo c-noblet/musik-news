@@ -1,0 +1,19 @@
+/* Form */
+input, textarea, select {
+  border: 1px solid $grey;
+  color: $black;
+}
+
+input, select {
+  border-radius: 2rem !important;
+}
+
+textarea {
+  border-radius: 1rem !important;
+}
+
+label {
+  color: $white;
+  font: bold normal normal 1rem/1.2rem $font-ubuntu;
+  letter-spacing: 0;  
+}

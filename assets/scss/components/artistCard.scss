@@ -1,0 +1,93 @@
+.artist-card {
+  position: relative;
+
+  &:after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+  }
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+
+  h2 {
+    bottom: 1%;
+    left: 1%;
+    position: absolute;
+  }
+
+  &:hover {
+    cursor: pointer;
+
+    img {
+      opacity: 0.5;
+    }
+
+    h2 {
+      color: $primary;
+    }
+  }
+}
+
+.album {
+  position: relative;
+  background-image: url('https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fcdn.onlinewebfonts.com%2Fsvg%2Fimg_496601.png&f=1&nofb=1');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  transition: all ease-in-out 0.2s;
+
+  a {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    transform: translate(-50%, -50%);
+  }
+
+  &:after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+  }
+
+  p {
+    font-size: 2rem;
+  }
+
+  .cover {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    color: $white;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  &:hover {
+    cursor: pointer;
+    opacity: 0.9;
+    transform: rotate(90deg);
+
+    & a {
+      transform: translateX(-50%) rotate(-90deg);
+    }
+
+    & a > p {
+      display: none;
+    }
+
+    .cover {
+      display: block;
+    }
+  }
+}

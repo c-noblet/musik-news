@@ -1,8 +1,26 @@
 <template>
-  <div>
-    <Nuxt />
+  <div
+    id="body"
+    class="bg-gray-700"
+  >
+    <Navbar />
+    <main class="container mx-auto">
+      <FlashMessage />
+      <Nuxt />
+    </main>
   </div>
 </template>
+
+<script>
+import FlashMessage from '~/components/Global/FlashMessage.vue'
+import Navbar from '~/components/Global/Navbar.vue'
+export default {
+  name: 'RootComponent',
+  components: {
+    FlashMessage, Navbar
+  }
+}
+</script>
 
 <style>
 html {
