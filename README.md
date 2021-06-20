@@ -7,7 +7,7 @@
 $ npm install
 
 # launch json-server at localhost:3000
-$ npm run serve
+$ npm run server
 
 # Launch nuxt app at localhost:8000
 $ npm run dev
